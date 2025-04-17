@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: CanvasSQL
+    uniqueID: 258439739
+    locked: 0
+  - name: TilemapScene
+    uniqueID: 3654670589
+    locked: 0

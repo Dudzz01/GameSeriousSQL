@@ -8,12 +8,12 @@ public static class DatabaseUtils
 {
     public static string GetDatabasePath(string filename)
     {
-        // Caminho onde o jogo vai usar/gravar o DB
+        
         string dst = Path.Combine(Application.persistentDataPath, filename);
 
         if (!File.Exists(dst))
         {
-            // Origem empacotada com o build
+            
             string src = Path.Combine(Application.streamingAssetsPath, filename);
             byte[] data;
 
@@ -24,12 +24,12 @@ public static class DatabaseUtils
             while (!www.isDone) {}
             data = www.downloadHandler.data;
 #else
-            // No Editor e desktop, usamos FileStream com FileShare para evitar o lock
+            
             using (var fs = new FileStream(
                 src,
                 FileMode.Open,
                 FileAccess.Read,
-                FileShare.ReadWrite   // <-- permite abrir mesmo que Unity já tenha aberto
+                FileShare.ReadWrite   
             ))
             {
                 data = new byte[fs.Length];
@@ -37,7 +37,7 @@ public static class DatabaseUtils
             }
 #endif
 
-            // Grava na pasta gravável
+            
             File.WriteAllBytes(dst, data);
         }
 
