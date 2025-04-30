@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Models
 {
 
-    public class Casa : MonoBehaviour
+    public class Casa
     {
 
         public int IdCasa { get; set; }

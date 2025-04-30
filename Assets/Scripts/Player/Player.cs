@@ -54,7 +54,7 @@ void Update()
     }
     void FixedUpdate()
     {
-        // Move o Rigidbody2D
+        
         rb.velocity = movement * moveSpeed;
     }
 }

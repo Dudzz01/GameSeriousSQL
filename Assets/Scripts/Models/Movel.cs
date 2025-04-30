@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Models
 {
 
-    public class Movel : MonoBehaviour
+    public class Movel 
     {
         public int IdMovel { get; set; }
         public int IdComodo { get; set; }

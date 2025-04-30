@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 using System;
 using System.Linq;
@@ -8,18 +8,29 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 using Models;
+using UnityEngine.UI;
+using System.Diagnostics;
+using Debug = UnityEngine.Debug;
 
 public class SQLConsoleUI : MonoBehaviour
 {
     [Header("UI Elements")]
     [SerializeField] private GameObject panel;        
     [SerializeField] private TMP_InputField inputField; 
-    [SerializeField] private TMP_Text feedbackText;     
+    [SerializeField] private TMP_Text feedbackText;
+
+    [Header("Result Grid")]
+    [SerializeField] private ScrollRect scrollRect;     // Scroll View
+    [SerializeField] private RectTransform content;     // Content
+    [SerializeField] private GameObject rowPrefab;      // RowPrefab
+
 
     private DatabaseManager db;
     private string[] allowedTables;
     private Delegate validator;
     private GameObject playerObj;
+
+    private GameObject inputArea;
 
     void Start()
     {
@@ -36,6 +47,15 @@ public class SQLConsoleUI : MonoBehaviour
         feedbackText.text = "";
         panel.SetActive(true);
         inputField.ActivateInputField();
+        Transform t = panel.transform.Find("InputArea");
+
+        if (t != null)
+        {
+            inputArea = t.gameObject;
+
+        }
+        inputArea.SetActive(true);
+        panel.GetComponent<Image>().enabled = true;
         playerObj = GameObject.FindGameObjectWithTag("Player");
         playerObj.GetComponent<Player>().GetComponent<Player>().enabled = false;
     }
@@ -43,11 +63,38 @@ public class SQLConsoleUI : MonoBehaviour
    
     public void Close()
     {
-        panel.SetActive(false);
+
+        Transform t = panel.transform.Find("InputArea");
+        
+        if (t != null)
+        {
+            inputArea = t.gameObject;
+
+        }
+        else
+        {
+            
+        }
+
+
+        if (inputArea != null)
+
+        {
+            inputArea.SetActive(false);
+            panel.GetComponent<Image>().enabled = false;
+        }
         playerObj.GetComponent<Player>().GetComponent<Player>().enabled = true;
+       
     }
 
-   
+    private IEnumerator CloseAfterDelay(float secs)
+    {
+        yield return new WaitForSeconds(secs);
+        Close();
+    }
+
+
+
     public void OnExecute()
     {
         string sql = inputField.text.Trim();
@@ -55,7 +102,7 @@ public class SQLConsoleUI : MonoBehaviour
         
         if (!ValidateTables(sql))
         {
-            feedbackText.text = "Consulta cont�m tabela n�o permitida.";
+            feedbackText.text = "Consulta contém tabela não permitida.";
             return;
         }
 
@@ -90,10 +137,23 @@ public class SQLConsoleUI : MonoBehaviour
            
             bool valid = (bool)validator.DynamicInvoke(itemsObj);
 
+            var enumerable = (IEnumerable)itemsObj;
+            bool anyRecord = enumerable.GetEnumerator().MoveNext();
+
             
-            string output = GetFormattedQueryResults(itemsObj);
-            feedbackText.text = (valid ? "Resposta correta!\n" : "Resposta incorreta!\n")
-                                + output;
+            feedbackText.text = valid ? "✔ Consulta correta!" : "✖ Consulta incorreta!";
+            if(valid)
+            {
+                RenderGrid(enumerable);
+            }
+
+            
+
+            if (anyRecord && valid)
+            {
+                
+                StartCoroutine(CloseAfterDelay(0.5f));
+            }
         }
         catch (TargetInvocationException tie)
         {
@@ -108,9 +168,22 @@ public class SQLConsoleUI : MonoBehaviour
         }
     }
 
-    // ----- Helpers Internos -----
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            panel.SetActive(false);
+            panel.GetComponent<Image>().enabled = true;
+            playerObj.GetComponent<Player>().GetComponent<Player>().enabled = true;
+             content.DetachChildren();                
+            scrollRect.gameObject.SetActive(false);  
+        }
+
+    }
 
     
+
+
     private List<string> ExtractTables(string sql)
     {
         var tables = new List<string>();
@@ -158,61 +231,77 @@ public class SQLConsoleUI : MonoBehaviour
     }
 
    
-    private string GetFormattedQueryResults(object itemsObj)
-    {
-        if (!(itemsObj is IEnumerable enumerable))
-            return "Nenhum registro encontrado.";
-
-        var sb = new StringBuilder();
-        var enumIter = enumerable.GetEnumerator();
-
-        if (!enumIter.MoveNext())
-            return "Nenhum registro encontrado.";
-
-        
-        object first = enumIter.Current;
-        var allProps = first.GetType()
-                            .GetProperties(BindingFlags.Public | BindingFlags.Instance);
-
-        
-        var props = allProps.Where(p =>
-            !(p.DeclaringType.Namespace?.StartsWith("UnityEngine") ?? false)
-            && !typeof(UnityEngine.Object).IsAssignableFrom(p.PropertyType)
-        ).ToArray();
-
-        if (props.Length == 0)
-            return "Nenhuma propriedade v�lida.";
-
-        
-        sb.AppendLine(string.Join("\t", props.Select(p => p.Name)));
-
-        
-        sb.AppendLine(GetRowValues(first, props));
-
-        
-        while (enumIter.MoveNext())
-            sb.AppendLine(GetRowValues(enumIter.Current, props));
-
-        return sb.ToString();
-    }
-
    
-    private string GetRowValues(object item, PropertyInfo[] props)
+   
+    private void EnsureCellCount(Transform rowTf, int needed)
     {
-        var row = new StringBuilder();
-        foreach (var p in props)
+        int diff = needed - rowTf.childCount;
+        if (diff <= 0) return;                 
+
+       
+        Transform template = rowTf.GetChild(0);
+        for (int i = 0; i < diff; i++)
         {
-            try
-            {
-                var v = p.GetValue(item, null);
-                row.Append(v != null ? v.ToString() : "null");
-            }
-            catch
-            {
-                row.Append("n/a");
-            }
-            row.Append("\t");
+            Transform clone = Instantiate(template, rowTf);
+            clone.name = $"Col{rowTf.childCount - 1}";
         }
-        return row.ToString().TrimEnd('\t');
     }
+
+    private void RenderGrid(IEnumerable list)
+    {
+        
+        foreach (Transform child in content)
+            Destroy(child.gameObject);
+
+        
+        var enumer = list.GetEnumerator();
+        if (!enumer.MoveNext())
+        {
+            feedbackText.text += "\nNenhum registro encontrado.";
+            return;
+        }
+
+        
+        object first = enumer.Current;
+        var props = first.GetType()
+                         .GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+        
+        GameObject head = Instantiate(rowPrefab, content);
+        EnsureCellCount(head.transform, props.Length);           
+        for (int i = 0; i < props.Length; i++)
+            head.transform.GetChild(i).GetComponent<TMP_Text>().text =
+                $"<b>{props[i].Name}</b>";
+
+        
+        CreateDynamicRow(first, props);
+
+        
+        while (enumer.MoveNext())
+            CreateDynamicRow(enumer.Current, props);
+
+        
+        Canvas.ForceUpdateCanvases();
+        scrollRect.verticalNormalizedPosition = 1;
+        scrollRect.gameObject.SetActive(true);
+    }
+
+    
+    private void CreateDynamicRow(object item, PropertyInfo[] props)
+    {
+        GameObject row = Instantiate(rowPrefab, content);
+        EnsureCellCount(row.transform, props.Length);
+
+        for (int i = 0; i < props.Length; i++)
+        {
+            object v = props[i].GetValue(item, null);
+            row.transform.GetChild(i).GetComponent<TMP_Text>().text =
+                v != null ? v.ToString() : "null";
+        }
+    }
+
+    
+
+    
+
 }

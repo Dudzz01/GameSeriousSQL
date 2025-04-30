@@ -4,12 +4,14 @@ using UnityEngine;
 namespace Models
 {
 
-    public class Item : MonoBehaviour
+    public class Item
     {
         public int IdItem { get; set; }
         public int IdMovel { get; set; }
         public string NomeItem { get; set; }
         public string Descricao { get; set; }
+
+        public string Dica { get; set; }
     }
 
 }
