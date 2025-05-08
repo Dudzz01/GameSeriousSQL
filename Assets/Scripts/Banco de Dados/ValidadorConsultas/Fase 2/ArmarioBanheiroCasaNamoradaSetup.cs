@@ -1,0 +1,85 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+
+[RequireComponent(typeof(FurnitureInteractable))]
+public class ArmarioBanheiroCasaNamoradaSetup : MonoBehaviour
+{
+    // Desafio 4: OR no ArmarioBanheiroCasaNamorada
+    const int ExpectedMovelId = 24;
+    static readonly HashSet<string> ExpectedItems = new HashSet<string> {
+        "MedicamentoCasaNamorada",
+        "RoloPapelCasaNamorada"
+    };
+
+    void Awake()
+    {
+        var fi = GetComponent<FurnitureInteractable>();
+
+        fi.validator = new Func<object, bool>(itemsObj =>
+        {
+            // 1) Deve ser uma coleção
+            if (!(itemsObj is IEnumerable enumerable))
+            {
+                Debug.Log("Validator: não é IEnumerable → invalid");
+                return false;
+            }
+
+            // 2) Materializa em lista
+            var lista = enumerable.Cast<object>().ToList();
+            // Deve retornar exatamente os 2 itens esperados
+            if (lista.Count != ExpectedItems.Count)
+            {
+                Debug.Log($"Validator: esperava {ExpectedItems.Count} itens, mas recebeu {lista.Count} → invalid");
+                return false;
+            }
+
+            var found = new HashSet<string>();
+            foreach (var item in lista)
+            {
+                var type = item.GetType();
+
+                // verifica IdMovel
+                var propId = type.GetProperty("IdMovel");
+                if (propId == null)
+                {
+                    Debug.Log("Validator: objeto sem propriedade IdMovel → invalid");
+                    return false;
+                }
+                int idMovel = Convert.ToInt32(propId.GetValue(item));
+                if (idMovel != ExpectedMovelId)
+                {
+                    Debug.Log($"Validator: IdMovel={idMovel} (esperado {ExpectedMovelId}) → invalid");
+                    return false;
+                }
+
+                // verifica NomeItem
+                var propNome = type.GetProperty("NomeItem");
+                if (propNome == null)
+                {
+                    Debug.Log("Validator: objeto sem propriedade NomeItem → invalid");
+                    return false;
+                }
+                var nomeItem = propNome.GetValue(item) as string;
+                if (!ExpectedItems.Contains(nomeItem))
+                {
+                    Debug.Log($"Validator: NomeItem='{nomeItem}' não é esperado → invalid");
+                    return false;
+                }
+                found.Add(nomeItem);
+            }
+
+            // garante que todos os itens esperados apareceram
+            if (!found.SetEquals(ExpectedItems))
+            {
+                Debug.Log($"Validator: itens retornados {string.Join(", ", found)} ≠ esperados {string.Join(", ", ExpectedItems)} → invalid");
+                return false;
+            }
+
+            Debug.Log("Validator: resposta correta → valid");
+            return true;
+        });
+    }
+}
