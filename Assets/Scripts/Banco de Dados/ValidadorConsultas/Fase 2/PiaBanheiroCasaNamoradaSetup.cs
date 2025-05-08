@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 public class PiaBanheiroCasaNamoradaSetup : MonoBehaviour
 {
-    // idMovel da pia cozinha namorada
+
     const int ExpectedMovelId = 22;
 
     void Awake()

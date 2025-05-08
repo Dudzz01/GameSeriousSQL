@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(FurnitureInteractable))]
 public class CentroSalaCasaNamoradaSetup : MonoBehaviour
 {
-    // Desafio 2: IN no CentroSalaCasaNamorada
+   
     const int ExpectedMovelId = 18;
     static readonly HashSet<string> ExpectedItems = new HashSet<string> {
         "VasoCasaNamorada",
@@ -38,7 +38,7 @@ public class CentroSalaCasaNamoradaSetup : MonoBehaviour
             {
                 var type = item.GetType();
 
-                // verifica IdMovel
+      
                 var propId = type.GetProperty("IdMovel");
                 if (propId == null)
                 {
@@ -52,7 +52,7 @@ public class CentroSalaCasaNamoradaSetup : MonoBehaviour
                     return false;
                 }
 
-                // verifica NomeItem
+              
                 var propNome = type.GetProperty("NomeItem");
                 if (propNome == null)
                 {

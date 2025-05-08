@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class ArmarioCozinhaCasaNamoradaSetup : MonoBehaviour
 {
-    // idMovel da pia cozinha namorada
+    
     const int ExpectedMovelId = 16;
 
     void Awake()

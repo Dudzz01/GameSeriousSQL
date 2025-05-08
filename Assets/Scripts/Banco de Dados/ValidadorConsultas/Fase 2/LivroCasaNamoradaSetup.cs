@@ -19,17 +19,17 @@ public class LivroCasaNamoradaSetup : MonoBehaviour
         var fi = GetComponent<FurnitureInteractable>();
         fi.validator = new Func<object, bool>(itemsObj =>
         {
-            // 1) Checa se é IEnumerable
+            
             if (!(itemsObj is IEnumerable enumerable))
             {
                 Debug.Log("Validator: não é IEnumerable → invalid");
                 return false;
             }
 
-            // 2) Materializa em lista
+          
             var lista = enumerable.Cast<object>().ToList();
 
-            // 3) Deve devolver exatamente os 2 itens sem "Chave"
+           
             if (lista.Count != ExpectedItems.Count)
             {
                 Debug.Log($"Validator: esperava {ExpectedItems.Count} itens, mas recebeu {lista.Count} → invalid");
@@ -41,13 +41,13 @@ public class LivroCasaNamoradaSetup : MonoBehaviour
             {
                 var type = item.GetType();
 
-                // 4) Confirma IdMovel
+         
                 var propMov = type.GetProperty("IdMovel");
                 if (propMov == null) return Fail("sem propriedade IdMovel");
                 if (Convert.ToInt32(propMov.GetValue(item)) != ExpectedMovelId)
                     return Fail($"IdMovel ≠ {ExpectedMovelId}");
 
-                // 5) Confirma NomeItem e ausência de "Chave"
+             
                 var propNome = type.GetProperty("NomeItem");
                 if (propNome == null) return Fail("sem propriedade NomeItem");
                 var nome = propNome.GetValue(item) as string;
@@ -59,7 +59,7 @@ public class LivroCasaNamoradaSetup : MonoBehaviour
                 found.Add(nome);
             }
 
-            // 6) Garante que são os exatamente esperados
+          
             if (!found.SetEquals(ExpectedItems))
                 return Fail($"Itens retornados [{string.Join(",", found)}] ≠ esperados [{string.Join(",", ExpectedItems)}]");
 

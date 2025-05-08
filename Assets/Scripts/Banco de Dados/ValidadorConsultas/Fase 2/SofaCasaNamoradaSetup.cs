@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SofaCasaNamoradaSetup : MonoBehaviour
 {
-    // idMovel da pia cozinha namorada
+    
     const int ExpectedMovelId = 17;
 
     void Awake()

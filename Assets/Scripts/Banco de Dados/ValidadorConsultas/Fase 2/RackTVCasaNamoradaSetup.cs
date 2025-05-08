@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class RackTVCasaNamoradaSetup : MonoBehaviour
 {
-    // idMovel da pia cozinha namorada
+ 
     const int ExpectedMovelId = 20;
 
     void Awake()

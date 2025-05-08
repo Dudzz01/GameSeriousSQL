@@ -6,9 +6,9 @@ using UnityEngine;
 [RequireComponent(typeof(FurnitureInteractable))]
 public class GeladeiraCasaNamoradaSetup : MonoBehaviour
 {
-    // idMovel da GeladeiraCasaNamorada
+    
     const int ExpectedMovelId = 14;
-    // nome exato do item que deve ser retornado
+ 
     const string ExpectedNomeItem = "ImaCasaNamorada";
 
     void Awake()
@@ -17,16 +17,15 @@ public class GeladeiraCasaNamoradaSetup : MonoBehaviour
 
         fi.validator = new Func<object, bool>(itemsObj =>
         {
-            // deve ser uma coleção
+
             if (!(itemsObj is IEnumerable enumerable))
             {
                 Debug.Log("Validator: não é IEnumerable → invalid");
                 return false;
             }
 
-            // materializa em lista
             var lista = enumerable.Cast<object>().ToList();
-            // deve retornar exatamente 1 registro
+           
             if (lista.Count != 1)
             {
                 Debug.Log($"Validator: esperava 1 registro, mas recebeu {lista.Count} → invalid");
@@ -36,7 +35,6 @@ public class GeladeiraCasaNamoradaSetup : MonoBehaviour
             var item = lista[0];
             var type = item.GetType();
 
-            // verifica IdMovel
             var propId = type.GetProperty("IdMovel");
             if (propId == null)
             {
@@ -50,7 +48,7 @@ public class GeladeiraCasaNamoradaSetup : MonoBehaviour
                 return false;
             }
 
-            // verifica NomeItem
+   
             var propNome = type.GetProperty("NomeItem");
             if (propNome == null)
             {

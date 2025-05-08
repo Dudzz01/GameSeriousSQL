@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(FurnitureInteractable))]
 public class ArmarioBanheiroCasaNamoradaSetup : MonoBehaviour
 {
-    // Desafio 4: OR no ArmarioBanheiroCasaNamorada
+    
     const int ExpectedMovelId = 24;
     static readonly HashSet<string> ExpectedItems = new HashSet<string> {
         "MedicamentoCasaNamorada",
@@ -20,16 +20,16 @@ public class ArmarioBanheiroCasaNamoradaSetup : MonoBehaviour
 
         fi.validator = new Func<object, bool>(itemsObj =>
         {
-            // 1) Deve ser uma coleção
+            
             if (!(itemsObj is IEnumerable enumerable))
             {
                 Debug.Log("Validator: não é IEnumerable → invalid");
                 return false;
             }
 
-            // 2) Materializa em lista
+            
             var lista = enumerable.Cast<object>().ToList();
-            // Deve retornar exatamente os 2 itens esperados
+            
             if (lista.Count != ExpectedItems.Count)
             {
                 Debug.Log($"Validator: esperava {ExpectedItems.Count} itens, mas recebeu {lista.Count} → invalid");
@@ -41,7 +41,7 @@ public class ArmarioBanheiroCasaNamoradaSetup : MonoBehaviour
             {
                 var type = item.GetType();
 
-                // verifica IdMovel
+               
                 var propId = type.GetProperty("IdMovel");
                 if (propId == null)
                 {
@@ -55,7 +55,7 @@ public class ArmarioBanheiroCasaNamoradaSetup : MonoBehaviour
                     return false;
                 }
 
-                // verifica NomeItem
+              
                 var propNome = type.GetProperty("NomeItem");
                 if (propNome == null)
                 {
@@ -71,7 +71,7 @@ public class ArmarioBanheiroCasaNamoradaSetup : MonoBehaviour
                 found.Add(nomeItem);
             }
 
-            // garante que todos os itens esperados apareceram
+    
             if (!found.SetEquals(ExpectedItems))
             {
                 Debug.Log($"Validator: itens retornados {string.Join(", ", found)} ≠ esperados {string.Join(", ", ExpectedItems)} → invalid");

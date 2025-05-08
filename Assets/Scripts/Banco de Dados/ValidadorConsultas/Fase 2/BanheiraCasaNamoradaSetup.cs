@@ -7,7 +7,7 @@ public class BanheiraCasaNamoradaSetup : MonoBehaviour
 {
 
 
-    // idMovel da pia cozinha namorada
+    
     const int ExpectedMovelId = 21;
 
     void Awake()
