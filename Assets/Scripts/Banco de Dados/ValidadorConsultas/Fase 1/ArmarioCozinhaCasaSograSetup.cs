@@ -41,6 +41,22 @@ public class ArmarioCozinhaSograSetup : MonoBehaviour
                     return false;
                 }
 
+                var propNome = item.GetType().GetProperty("NomeItem");
+                if (propNome == null ||
+                    string.IsNullOrEmpty(propNome.GetValue(item)?.ToString()))
+                {
+                    Debug.Log("Validator: objeto sem NomeItem");
+                    return false;
+                }
+
+                var propDica = item.GetType().GetProperty("Dica");
+                if (propDica == null ||
+                    string.IsNullOrEmpty(propDica.GetValue(item)?.ToString()))
+                {
+                    Debug.Log("Validator: objeto sem Dica");
+                    return false;
+                }
+
 
                 var value = prop.GetValue(item);
                 int idMovel;
@@ -64,6 +80,11 @@ public class ArmarioCozinhaSograSetup : MonoBehaviour
 
 
             Debug.Log($"Validator: todos os {lista.Count} itens vêm de IdMovel={ExpectedMovelId} → valid");
+            if (GameController.s.quantidadesDesafiosConcluidos[9] == false)
+            {
+                GameController.s.quantidadesDesafiosConcluidos[9] = true;
+                GameController.s.desafiosConcluidos++;
+            }
             return true;
         });
     }

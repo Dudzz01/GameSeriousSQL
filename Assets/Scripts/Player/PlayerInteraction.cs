@@ -1,21 +1,25 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Linq;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    [Header("Configuração de Interação")]
+    [Header("ConfiguraÃ§Ã£o de InteraÃ§Ã£o")]
     [SerializeField] float interactRadius = 2f;
     [SerializeField] KeyCode interactKey = KeyCode.LeftControl;
 
-    [Header("Referências de UI")]
-    [SerializeField] GameObject promptUI;           // painel que contém o texto
-    [SerializeField] TextMeshProUGUI promptText;    // componente de texto
-    [SerializeField] Button closeConsoleButton;     // botão “Fechar” do painel de consulta
+    [Header("ReferÃªncias de UI")]
+    [SerializeField] GameObject promptUI;           // painel que contÃ©m o texto
+    [SerializeField] TextMeshProUGUI promptText;    
+    [SerializeField] Button closeConsoleButton;     
+
+    [Header("Modo Blocos")]
+    [SerializeField] private QueryBuilderUI queryBuilderUI;  
+
 
     private FurnitureInteractable nearestFI;
-    private bool consoleOpen = false;                // controla se o console está aberto
+    private bool consoleOpen = false;                
 
     void Start()
     {
@@ -49,12 +53,24 @@ public class PlayerInteraction : MonoBehaviour
                 promptText.text = $"Pressione CTRL para acessar {nearestFI.movableName}";
             }
 
-            
+
             if (Input.GetKeyDown(interactKey))
             {
-                nearestFI.sqlUI.Open(nearestFI.allowedTables, nearestFI.validator);
-                consoleOpen = true;
+                
                 promptUI.SetActive(false);
+                consoleOpen = true;
+                Debug.Log(nearestFI.textoEnunciado);
+
+                
+
+                
+               
+                queryBuilderUI.availableTokens = nearestFI.tokens;
+                
+
+               
+                queryBuilderUI.Open(nearestFI.allowedTables, nearestFI.validator);
+                EnunciadoUIManager.I.Show(nearestFI.textoEnunciado);
             }
         }
         else
@@ -70,9 +86,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private void CloseConsole()
     {
-        if (nearestFI != null)
-            nearestFI.sqlUI.Close();
-
+        queryBuilderUI.OnClose();
         consoleOpen = false;
 
         if (nearestFI != null &&

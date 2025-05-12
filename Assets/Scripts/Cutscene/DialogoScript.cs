@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DialogoScript : MonoBehaviour
@@ -15,6 +16,7 @@ public class DialogoScript : MonoBehaviour
     [SerializeField] private Sprite spriteNpc;
     [SerializeField] private bool readyToSpeak;
     [SerializeField] private bool startDialogo;
+    [SerializeField] private bool goMenuAfterDialogo;
 
     private GameObject playerObj;
 
@@ -22,7 +24,6 @@ public class DialogoScript : MonoBehaviour
     {
         dialogoPanel.SetActive(false);
 
-        // Desabilita o player e inicia o diálogo assim que a cena carrega
         playerObj = GameObject.FindGameObjectWithTag("Player");
         playerObj.GetComponent<Player>().enabled = false;
         playerObj.GetComponent<Animator>().enabled = false;
@@ -33,12 +34,12 @@ public class DialogoScript : MonoBehaviour
 
     void Update()
     {
-        // Permite reativar o diálogo ao apertar Fire1 dentro do trigger
+       
         if (Input.GetButtonDown("Fire1") && readyToSpeak && !startDialogo)
         {
             StartDialogo();
         }
-        // Avança linhas automaticamente quando o texto terminar de ser exibido
+      
         else if (startDialogo && dialogoTexto.text == dialogoNpc[dialogoIndex])
         {
             dialogoIndex++;
@@ -48,28 +49,33 @@ public class DialogoScript : MonoBehaviour
             }
             else
             {
-                // Encerra o diálogo e devolve o controle ao player
+              
                 dialogoPanel.SetActive(false);
                 startDialogo = false;
                 dialogoIndex = 0;
                 playerObj.GetComponent<Player>().enabled = true;
                 playerObj.GetComponent<Animator>().enabled = true;
+                if (goMenuAfterDialogo)
+                {
+                    
+                    SceneManager.LoadScene("Menu");
+                }
             }
         }
     }
 
     private void StartDialogo()
     {
-        // Desabilita o controle do player
+  
         if (playerObj == null)
             playerObj = GameObject.FindGameObjectWithTag("Player");
         playerObj.GetComponent<Player>().enabled = false;
 
-        // Exibe o painel e configura o primeiro texto
+    
         dialogoPanel.SetActive(true);
         startDialogo = true;
         dialogoIndex = 0;
-        // nomeDialogoTexto.text = "Sogra"; // se quiser exibir o nome
+     
         imageNpc.sprite = spriteNpc;
         StartCoroutine(ShowDialogo());
     }

@@ -10,8 +10,7 @@ public class CentroSalaCasaNamoradaSetup : MonoBehaviour
    
     const int ExpectedMovelId = 18;
     static readonly HashSet<string> ExpectedItems = new HashSet<string> {
-        "VasoCasaNamorada",
-        "PortaCoposCasaNamorada"
+        "VasoCasaNamorada"
     };
 
     void Awake()
@@ -45,6 +44,16 @@ public class CentroSalaCasaNamoradaSetup : MonoBehaviour
                     Debug.Log("Validator: objeto sem propriedade IdMovel → invalid");
                     return false;
                 }
+
+            
+
+                var propDica = item.GetType().GetProperty("Dica");
+                if (propDica == null ||
+                    string.IsNullOrEmpty(propDica.GetValue(item)?.ToString()))
+                {
+                    Debug.Log("Validator: objeto sem Dica");
+                    return false;
+                }
                 int idMovel = Convert.ToInt32(propId.GetValue(item));
                 if (idMovel != ExpectedMovelId)
                 {
@@ -75,6 +84,11 @@ public class CentroSalaCasaNamoradaSetup : MonoBehaviour
             }
 
             Debug.Log("Validator: resposta correta → valid");
+            if (GameController.s.quantidadesDesafiosConcluidos[19] == false)
+            {
+                GameController.s.quantidadesDesafiosConcluidos[19] = true;
+                GameController.s.desafiosConcluidos++;
+            }
             return true;
         });
     }

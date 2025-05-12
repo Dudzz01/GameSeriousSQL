@@ -7,70 +7,92 @@ using UnityEngine;
 [RequireComponent(typeof(FurnitureInteractable))]
 public class LivroCasaNamoradaSetup : MonoBehaviour
 {
-    // Desafio 6: NOT no LivroCasaNamorada
+    
     const int ExpectedMovelId = 28;
-    static readonly HashSet<string> ExpectedItems = new HashSet<string> {
-        "PortaRetratoQuartoCasaNamorada",
-        "CaixaMemoriasCasaNamorada"
-    };
+    
 
     void Awake()
     {
         var fi = GetComponent<FurnitureInteractable>();
+
         fi.validator = new Func<object, bool>(itemsObj =>
         {
-            
+
             if (!(itemsObj is IEnumerable enumerable))
             {
                 Debug.Log("Validator: não é IEnumerable → invalid");
                 return false;
             }
 
-          
-            var lista = enumerable.Cast<object>().ToList();
 
-           
-            if (lista.Count != ExpectedItems.Count)
+            var lista = enumerable.Cast<object>().ToList();
+            if (lista.Count == 0)
             {
-                Debug.Log($"Validator: esperava {ExpectedItems.Count} itens, mas recebeu {lista.Count} → invalid");
+                Debug.Log("Validator: sem registros → invalid");
                 return false;
             }
 
-            var found = new HashSet<string>();
+
             foreach (var item in lista)
             {
-                var type = item.GetType();
 
-         
-                var propMov = type.GetProperty("IdMovel");
-                if (propMov == null) return Fail("sem propriedade IdMovel");
-                if (Convert.ToInt32(propMov.GetValue(item)) != ExpectedMovelId)
-                    return Fail($"IdMovel ≠ {ExpectedMovelId}");
+                var prop = item.GetType().GetProperty("IdMovel");
+                if (prop == null)
+                {
+                    Debug.Log("Validator: objeto sem propriedade IdMovel → invalid");
+                    return false;
+                }
 
-             
-                var propNome = type.GetProperty("NomeItem");
-                if (propNome == null) return Fail("sem propriedade NomeItem");
-                var nome = propNome.GetValue(item) as string;
-                if (nome.Contains("Chave"))
-                    return Fail($"NomeItem contém 'Chave' → invalid");
-                if (!ExpectedItems.Contains(nome))
-                    return Fail($"NomeItem inesperado '{nome}'");
+                var propNome = item.GetType().GetProperty("NomeItem");
+                if (propNome == null ||
+                    string.IsNullOrEmpty(propNome.GetValue(item)?.ToString()))
+                {
+                    Debug.Log("Validator: objeto sem NomeItem");
+                    return false;
+                }
 
-                found.Add(nome);
+
+
+                var propDica = item.GetType().GetProperty("Dica");
+                if (propDica == null ||
+                    string.IsNullOrEmpty(propDica.GetValue(item)?.ToString()))
+                {
+                    Debug.Log("Validator: objeto sem Dica");
+                    return false;
+                }
+
+
+
+                var value = prop.GetValue(item);
+                int idMovel;
+                try
+                {
+                    idMovel = Convert.ToInt32(value);
+                }
+                catch
+                {
+                    Debug.Log($"Validator: não conseguiu converter {value} para int → invalid");
+                    return false;
+                }
+
+
+                if (idMovel != ExpectedMovelId)
+                {
+                    Debug.Log($"Validator: encontrou IdMovel={idMovel} (esperado {ExpectedMovelId}) → invalid");
+                    return false;
+                }
             }
 
-          
-            if (!found.SetEquals(ExpectedItems))
-                return Fail($"Itens retornados [{string.Join(",", found)}] ≠ esperados [{string.Join(",", ExpectedItems)}]");
 
-            Debug.Log("Validator: resposta correta → valid");
+            Debug.Log($"Validator: todos os {lista.Count} itens vêm de IdMovel={ExpectedMovelId} → valid");
+            if (GameController.s.quantidadesDesafiosConcluidos[21] == false)
+            {
+                GameController.s.quantidadesDesafiosConcluidos[21] = true;
+                GameController.s.desafiosConcluidos++;
+            }
             return true;
         });
     }
 
-    private bool Fail(string msg)
-    {
-        Debug.Log($"Validator: {msg}");
-        return false;
-    }
+   
 }

@@ -48,6 +48,15 @@ public class ArmarioBanheiroCasaNamoradaSetup : MonoBehaviour
                     Debug.Log("Validator: objeto sem propriedade IdMovel → invalid");
                     return false;
                 }
+
+                var propDica = item.GetType().GetProperty("Dica");
+                if (propDica == null ||
+                    string.IsNullOrEmpty(propDica.GetValue(item)?.ToString()))
+                {
+                    Debug.Log("Validator: objeto sem Dica");
+                    return false;
+                }
+
                 int idMovel = Convert.ToInt32(propId.GetValue(item));
                 if (idMovel != ExpectedMovelId)
                 {
@@ -79,6 +88,11 @@ public class ArmarioBanheiroCasaNamoradaSetup : MonoBehaviour
             }
 
             Debug.Log("Validator: resposta correta → valid");
+            if (GameController.s.quantidadesDesafiosConcluidos[15] == false)
+            {
+                GameController.s.quantidadesDesafiosConcluidos[15] = true;
+                GameController.s.desafiosConcluidos++;
+            }
             return true;
         });
     }

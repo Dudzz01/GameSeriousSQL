@@ -48,11 +48,20 @@ public class GeladeiraCasaNamoradaSetup : MonoBehaviour
                 return false;
             }
 
-   
-            var propNome = type.GetProperty("NomeItem");
-            if (propNome == null)
+
+            var propNome = item.GetType().GetProperty("NomeItem");
+            if (propNome == null ||
+                string.IsNullOrEmpty(propNome.GetValue(item)?.ToString()))
             {
-                Debug.Log("Validator: objeto sem propriedade NomeItem → invalid");
+                Debug.Log("Validator: objeto sem NomeItem");
+                return false;
+            }
+
+            var propDica = item.GetType().GetProperty("Dica");
+            if (propDica == null ||
+                string.IsNullOrEmpty(propDica.GetValue(item)?.ToString()))
+            {
+                Debug.Log("Validator: objeto sem Dica");
                 return false;
             }
             var nomeItem = propNome.GetValue(item) as string;
@@ -63,6 +72,11 @@ public class GeladeiraCasaNamoradaSetup : MonoBehaviour
             }
 
             Debug.Log("Validator: resposta correta → valid");
+            if (GameController.s.quantidadesDesafiosConcluidos[22] == false)
+            {
+                GameController.s.quantidadesDesafiosConcluidos[22] = true;
+                GameController.s.desafiosConcluidos++;
+            }
             return true;
         });
     }

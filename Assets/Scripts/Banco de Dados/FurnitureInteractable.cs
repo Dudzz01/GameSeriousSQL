@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
-using Models;  // apenas se precisar de SQLConsoleUI
+using Models;
+using TMPro;  
 
 public class FurnitureInteractable : MonoBehaviour
 {
@@ -11,4 +12,13 @@ public class FurnitureInteractable : MonoBehaviour
     public string[] allowedTables;
     public Delegate validator;
     public SQLConsoleUI sqlUI;
+    [Header("Blocos SQL deste móvel")]
+    public string[] tokens;
+
+    [Header("TextosEnunciados")]
+    
+    public string textoEnunciado;
+
+   
+
 }

@@ -20,15 +20,17 @@ public class SQLConsoleUI : MonoBehaviour
     [SerializeField] private TMP_Text feedbackText;
 
     [Header("Result Grid")]
-    [SerializeField] private ScrollRect scrollRect;     // Scroll View
-    [SerializeField] private RectTransform content;     // Content
-    [SerializeField] private GameObject rowPrefab;      // RowPrefab
+    [SerializeField] private ScrollRect scrollRect;     
+    [SerializeField] private RectTransform content;     
+    [SerializeField] private GameObject rowPrefab;      
 
 
     private DatabaseManager db;
     private string[] allowedTables;
     private Delegate validator;
     private GameObject playerObj;
+
+    private List<string> selectedColumns = new List<string>();
 
     private GameObject inputArea;
 
@@ -99,7 +101,15 @@ public class SQLConsoleUI : MonoBehaviour
     {
         string sql = inputField.text.Trim();
 
-        
+       
+        selectedColumns = ExtractSelectedColumns(sql);
+        if (selectedColumns.Count == 0)
+        {
+            feedbackText.text = "Você deve selecionar colunas no SELECT.";
+            return;
+        }
+
+
         if (!ValidateTables(sql))
         {
             feedbackText.text = "Consulta contém tabela não permitida.";
@@ -128,32 +138,61 @@ public class SQLConsoleUI : MonoBehaviour
 
         try
         {
-            
+
             MethodInfo exec = typeof(DatabaseManager)
                 .GetMethod("ExecuteQuery", BindingFlags.Public | BindingFlags.Instance);
             MethodInfo gen = exec.MakeGenericMethod(resultType);
             object itemsObj = gen.Invoke(db, new object[] { sql });
 
-           
-            bool valid = (bool)validator.DynamicInvoke(itemsObj);
+
+            
+            var paramCount = validator.Method.GetParameters().Length;
+            bool valid;
+            if (paramCount == 2)
+            {
+                
+                valid = (bool)validator.DynamicInvoke(sql, itemsObj);
+            }
+            else if (paramCount == 1)
+            {
+                
+                valid = (bool)validator.DynamicInvoke(itemsObj);
+            }
+            else
+            {
+                Debug.LogError($"Validator tem {paramCount} parâmetros — não suportado");
+                valid = false;
+            }
+
 
             var enumerable = (IEnumerable)itemsObj;
             bool anyRecord = enumerable.GetEnumerator().MoveNext();
 
-            
+
             feedbackText.text = valid ? "✔ Consulta correta!" : "✖ Consulta incorreta!";
-            if(valid)
-            {
-                RenderGrid(enumerable);
-            }
 
-            
-
-            if (anyRecord && valid)
+            if (selectedColumns.Count == 1 && selectedColumns[0] == "*")
             {
                 
-                StartCoroutine(CloseAfterDelay(0.5f));
+                if (valid)
+                {
+                    RenderGridWithAllProperties(enumerable);
+                    Close();
+                }
+                
+                return;
             }
+
+
+            if (valid)
+            {
+                RenderGrid(enumerable);
+                Close();
+                return;
+            }
+
+            
+            
         }
         catch (TargetInvocationException tie)
         {
@@ -166,6 +205,15 @@ public class SQLConsoleUI : MonoBehaviour
             feedbackText.text = "Erro na query: " + ex.Message;
             Debug.LogError(ex);
         }
+    }
+
+   
+    public void ExecuteRaw(string sql)
+    {
+        
+        inputField.text = sql;
+        
+        OnExecute();
     }
 
     private void Update()
@@ -201,7 +249,21 @@ public class SQLConsoleUI : MonoBehaviour
         return tables;
     }
 
-    
+    private List<string> ExtractSelectedColumns(string sql)
+    {
+        var match = Regex.Match(sql, @"^\s*SELECT\s+(?<cols>.+?)\s+FROM", RegexOptions.IgnoreCase);
+        if (!match.Success)
+            return new List<string>();
+
+        return match.Groups["cols"].Value
+            .Split(',')
+            .Select(c => c.Trim())
+            .Where(c => c.Length > 0)
+            .ToList();
+    }
+
+
+
     private bool ValidateTables(string sql)
     {
         var regex = new Regex(@"\b(FROM|JOIN)\s+([A-Za-z0-9_]+)",
@@ -249,11 +311,10 @@ public class SQLConsoleUI : MonoBehaviour
 
     private void RenderGrid(IEnumerable list)
     {
-        
+       
         foreach (Transform child in content)
             Destroy(child.gameObject);
 
-        
         var enumer = list.GetEnumerator();
         if (!enumer.MoveNext())
         {
@@ -262,31 +323,64 @@ public class SQLConsoleUI : MonoBehaviour
         }
 
         
-        object first = enumer.Current;
-        var props = first.GetType()
-                         .GetProperties(BindingFlags.Public | BindingFlags.Instance);
-
-        
         GameObject head = Instantiate(rowPrefab, content);
-        EnsureCellCount(head.transform, props.Length);           
-        for (int i = 0; i < props.Length; i++)
+        EnsureCellCount(head.transform, selectedColumns.Count);
+        for (int i = 0; i < selectedColumns.Count; i++)
             head.transform.GetChild(i).GetComponent<TMP_Text>().text =
-                $"<b>{props[i].Name}</b>";
+                $"<b>{selectedColumns[i]}</b>";
 
-        
-        CreateDynamicRow(first, props);
+       
+        CreateDynamicRowProp(enumer.Current);
 
-        
         while (enumer.MoveNext())
-            CreateDynamicRow(enumer.Current, props);
+            CreateDynamicRowProp(enumer.Current);
 
-        
         Canvas.ForceUpdateCanvases();
         scrollRect.verticalNormalizedPosition = 1;
         scrollRect.gameObject.SetActive(true);
     }
 
-    
+
+    private void RenderGridWithAllProperties(IEnumerable list)
+    {
+
+        foreach (Transform child in content)
+            Destroy(child.gameObject);
+
+
+        var enumer = list.GetEnumerator();
+        if (!enumer.MoveNext())
+        {
+            feedbackText.text += "\nNenhum registro encontrado.";
+            return;
+        }
+
+
+        object first = enumer.Current;
+        var props = first.GetType()
+                         .GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+
+        GameObject head = Instantiate(rowPrefab, content);
+        EnsureCellCount(head.transform, props.Length);
+        for (int i = 0; i < props.Length; i++)
+            head.transform.GetChild(i).GetComponent<TMP_Text>().text =
+                $"<b>{props[i].Name}</b>";
+
+
+        CreateDynamicRow(first, props);
+
+
+        while (enumer.MoveNext())
+            CreateDynamicRow(enumer.Current, props);
+
+
+        Canvas.ForceUpdateCanvases();
+        scrollRect.verticalNormalizedPosition = 1;
+        scrollRect.gameObject.SetActive(true);
+    }
+
+
     private void CreateDynamicRow(object item, PropertyInfo[] props)
     {
         GameObject row = Instantiate(rowPrefab, content);
@@ -300,8 +394,24 @@ public class SQLConsoleUI : MonoBehaviour
         }
     }
 
-    
+    private void CreateDynamicRowProp(object item)
+    {
+        GameObject row = Instantiate(rowPrefab, content);
+        EnsureCellCount(row.transform, selectedColumns.Count);
 
-    
+        for (int i = 0; i < selectedColumns.Count; i++)
+        {
+            string col = selectedColumns[i];
+            var prop = item.GetType().GetProperty(col);
+            object v = prop != null ? prop.GetValue(item, null) : null;
+            row.transform.GetChild(i).GetComponent<TMP_Text>().text =
+                v != null ? v.ToString() : string.Empty;
+        }
+    }
+
+
+
+
+
 
 }
