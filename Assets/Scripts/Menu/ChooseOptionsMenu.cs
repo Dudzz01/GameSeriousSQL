@@ -29,7 +29,7 @@ public class ChooseOptionsMenu : MonoBehaviour
         }
 
         
-        SceneManager.LoadScene("SelecionarFase");
+        SceneManager.LoadScene("SelecionarFaseTeste");
     }
 
     public void Creditos()

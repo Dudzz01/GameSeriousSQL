@@ -50,4 +50,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Fases/Fase Final.unity
     guid: f663900a842e75a45b7693255667b1d1
+  - enabled: 1
+    path: Assets/Scenes/Menu/SelecionarFaseTeste.unity
+    guid: 6165c37cc1bdcd843b285ed73d74989c
   m_configObjects: {}

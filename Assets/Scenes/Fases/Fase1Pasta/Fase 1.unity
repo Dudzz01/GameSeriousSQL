@@ -2900,7 +2900,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -10, y: -119.130005}
+  m_AnchoredPosition: {x: -10, y: -397}
   m_SizeDelta: {x: -1016.92, y: -892.19}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &639252109
@@ -7015,10 +7015,10 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.011027336, y: -0.011027575}
+  m_Offset: {x: -0.013532162, y: 0.01026547}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -7029,7 +7029,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.54596233, y: 0.4467144}
+  m_Size: {x: 0.3305273, y: 0.3540275}
   m_EdgeRadius: 0
 --- !u!50 &1735126333
 Rigidbody2D:
@@ -7256,7 +7256,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 3
+  orthographic size: 2
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -7310,7 +7310,7 @@ MonoBehaviour:
   m_Follow: {fileID: 445502205}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 3
+    OrthographicSize: 2
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0

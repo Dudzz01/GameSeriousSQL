@@ -1254,7 +1254,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8411441634542321715, guid: c968d8ef219e2ae4b8c89b277a182b95, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 220.00002
+      value: 220.00008
       objectReference: {fileID: 0}
     - target: {fileID: 8659915984285808450, guid: c968d8ef219e2ae4b8c89b277a182b95, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2757,7 +2757,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 3
+  orthographic size: 2
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2841,7 +2841,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1500136264}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 3
+    OrthographicSize: 2
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
@@ -12176,7 +12176,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -10, y: -113.630005}
+  m_AnchoredPosition: {x: -10, y: -392}
   m_SizeDelta: {x: -1016.92, y: -884.32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1661989100

@@ -70,3 +70,13 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Build Standalone Windows
+# Ignora qualquer pasta que termine em _Data, em qualquer nível de subpasta
+**/*_Data/
+
+# Ignora executáveis Windows, em qualquer nível
+**/*.exe
+
+#Ignora pasta build
+/BuildGameSeriousSQL/
