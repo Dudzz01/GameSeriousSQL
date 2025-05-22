@@ -980,8 +980,7 @@ PrefabInstance:
       propertyPath: textoEnunciado
       value: "Desafio: Encontre itens escondidos na mesa da cozinha atrav\xE9s da
         tabela Itens e filtrando pelo campo IdMovel!  Para isso, utilize os comandos
-        SQL corretos exibindo obrigatoriamente 3 campos (NomeItem, IdMovel, Dica)
-        , pode ser que tenha uma surpresa..."
+        SQL corretos exibindo obrigatoriamente 3 campos (NomeItem, IdMovel, Dica)."
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.size
