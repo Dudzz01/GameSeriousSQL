@@ -10,7 +10,7 @@ public class CentroSalaCasaNamoradaSetup : MonoBehaviour
    
     const int ExpectedMovelId = 18;
     static readonly HashSet<string> ExpectedItems = new HashSet<string> {
-        "VasoCasaNamorada"
+        "ChaveCentroSalaCasaNamorada"
     };
 
     void Awake()

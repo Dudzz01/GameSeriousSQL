@@ -80,11 +80,7 @@ public class FogaoCasaSograSetup : MonoBehaviour
 
 
             Debug.Log($"Validator: todos os {lista.Count} itens vêm de IdMovel={ExpectedMovelId} → valid");
-            if (GameController.s.quantidadesDesafiosConcluidos[11] == false)
-            {
-                GameController.s.quantidadesDesafiosConcluidos[11] = true;
-                GameController.s.desafiosConcluidos++;
-            }
+            
             return true;
         });
     }

@@ -79,11 +79,7 @@ public class SofaCasaNamoradaSetup : MonoBehaviour
 
 
             Debug.Log($"Validator: todos os {lista.Count} itens vêm de IdMovel={ExpectedMovelId} → valid");
-            if (GameController.s.quantidadesDesafiosConcluidos[24] == false)
-            {
-                GameController.s.quantidadesDesafiosConcluidos[24] = true;
-                GameController.s.desafiosConcluidos++;
-            }
+            
             return true;
         });
     }

@@ -80,11 +80,7 @@ public class GeladeiraCasaSograSetup : MonoBehaviour
 
 
             Debug.Log($"Validator: todos os {lista.Count} itens vêm de IdMovel={ExpectedMovelId} → valid");
-            if (GameController.s.quantidadesDesafiosConcluidos[8] == false)
-            {
-                GameController.s.quantidadesDesafiosConcluidos[8] = true;
-                GameController.s.desafiosConcluidos++;
-            }
+            
             return true;
         });
     }

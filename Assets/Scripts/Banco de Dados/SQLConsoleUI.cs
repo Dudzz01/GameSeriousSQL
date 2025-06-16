@@ -97,106 +97,112 @@ public class SQLConsoleUI : MonoBehaviour
 
 
 
+    // DTO para resultados de INNER JOIN Itens+Moveis+Comodos
+    public class ItemMovelComodoDTO
+    {
+        public string NomeItem { get; set; }
+        public string Dica { get; set; }
+        public string NomeMovel { get; set; }
+        public string NomeComodo { get; set; }
+    }
+
     public void OnExecute()
     {
         string sql = inputField.text.Trim();
 
-       
-        selectedColumns = ExtractSelectedColumns(sql);
+        // 1) normaliza espaços e pontos
+        string norm = Regex.Replace(sql, @"\s+", " ").Trim();
+        norm = Regex.Replace(norm, @"\s*\.\s*", ".");
+
+        // 2) extrai e valida sintaxe básica
+        selectedColumns = ExtractSelectedColumns(norm);
         if (selectedColumns.Count == 0)
         {
             feedbackText.text = "Você deve selecionar colunas no SELECT.";
             return;
         }
-
-
-        if (!ValidateTables(sql))
+        if (!ValidateTables(norm))
         {
             feedbackText.text = "Consulta contém tabela não permitida.";
             return;
         }
-
-        
-        List<string> tables = ExtractTables(sql);
+        var tables = ExtractTables(norm);
         if (tables.Count == 0)
         {
             feedbackText.text = "Nenhuma tabela em FROM/JOINS detectada.";
             return;
         }
 
-        
-        Type resultType;
-        try
-        {
-            resultType = MapTableNameToType(tables[0]);
-        }
-        catch (Exception e)
-        {
-            feedbackText.text = e.Message;
-            return;
-        }
+        // 3) remove qualifier para detectar o DTO
+        var bareCols = selectedColumns
+            .Select(c => {
+                var parts = c.Split('.');
+                return parts[parts.Length - 1];
+            })
+            .ToList();
+
+        bool isThreeWayJoin =
+            bareCols.Contains("NomeItem") &&
+            bareCols.Contains("Dica") &&
+            bareCols.Contains("NomeMovel") &&
+            bareCols.Contains("NomeComodo");
+
+        // 4) escolhe o tipo de mapeamento
+        Type resultType = isThreeWayJoin
+            ? typeof(ItemMovelComodoDTO)
+            : MapTableNameToType(tables[0]);
+
+        // 5) separa SELECT … e FROM … para reescrever colunas
+        var mFrom = Regex.Match(norm, @"\bFROM\b", RegexOptions.IgnoreCase);
+        string selectPart = norm.Substring(0, mFrom.Index);
+        string fromPart = norm.Substring(mFrom.Index);
+
+        // 6) injeta AS só onde faltar
+        var cols = selectPart
+            .Substring(6)  // retira “SELECT”
+            .Split(',')
+            .Select(c => c.Trim())
+            .Select(c => {
+                if (!c.Contains('.') || Regex.IsMatch(c, @"\bAS\b", RegexOptions.IgnoreCase))
+                    return c;
+                var parts = c.Split('.');
+                return $"{c} AS {parts[1]}";
+            })
+            .ToArray();
+
+        // 7) monta SQL para o DB
+        string dbSql = "SELECT " + string.Join(", ", cols) + " " + fromPart;
+        Debug.Log($"[SQL → DB] {dbSql}");
 
         try
         {
-
-            MethodInfo exec = typeof(DatabaseManager)
+            // 8) executa no banco
+            var exec = typeof(DatabaseManager)
                 .GetMethod("ExecuteQuery", BindingFlags.Public | BindingFlags.Instance);
-            MethodInfo gen = exec.MakeGenericMethod(resultType);
-            object itemsObj = gen.Invoke(db, new object[] { sql });
+            var gen = exec.MakeGenericMethod(resultType);
+            var itemsObj = gen.Invoke(db, new object[] { dbSql });
 
-
-            
-            var paramCount = validator.Method.GetParameters().Length;
+            // 9) valida com SQL original
             bool valid;
-            if (paramCount == 2)
-            {
-                
-                valid = (bool)validator.DynamicInvoke(sql, itemsObj);
-            }
-            else if (paramCount == 1)
-            {
-                
-                valid = (bool)validator.DynamicInvoke(itemsObj);
-            }
-            else
-            {
-                Debug.LogError($"Validator tem {paramCount} parâmetros — não suportado");
-                valid = false;
-            }
+            int pCount = validator.Method.GetParameters().Length;
+            valid = pCount == 2
+                ? (bool)validator.DynamicInvoke(norm, itemsObj)
+                : (bool)validator.DynamicInvoke(itemsObj);
 
-
-            var enumerable = (IEnumerable)itemsObj;
-            bool anyRecord = enumerable.GetEnumerator().MoveNext();
-
-
+            // 10) renderiza
+            var en = (IEnumerable)itemsObj;
             feedbackText.text = valid ? "✔ Consulta correta!" : "✖ Consulta incorreta!";
-
-            if (selectedColumns.Count == 1 && selectedColumns[0] == "*")
-            {
-                
-                if (valid)
-                {
-                    RenderGridWithAllProperties(enumerable);
-                    Close();
-                }
-                
-                return;
-            }
-
-
             if (valid)
             {
-                RenderGrid(enumerable);
+                if (selectedColumns.Count == 1 && selectedColumns[0] == "*")
+                    RenderGridWithAllProperties(en);
+                else
+                    RenderGrid(en);
                 Close();
-                return;
             }
-
-            
-            
         }
         catch (TargetInvocationException tie)
         {
-            
             feedbackText.text = "Erro ao executar a consulta: " + tie.InnerException.Message;
             Debug.LogError(tie.InnerException);
         }
@@ -207,7 +213,8 @@ public class SQLConsoleUI : MonoBehaviour
         }
     }
 
-   
+
+
     public void ExecuteRaw(string sql)
     {
         
@@ -281,6 +288,7 @@ public class SQLConsoleUI : MonoBehaviour
     
     private Type MapTableNameToType(string table)
     {
+        Debug.Log("Selecionando tipo raiz.");
         switch (table.ToLower())
         {
             case "itens": return typeof(Item);
@@ -311,7 +319,7 @@ public class SQLConsoleUI : MonoBehaviour
 
     private void RenderGrid(IEnumerable list)
     {
-       
+        // limpa linhas antigas
         foreach (Transform child in content)
             Destroy(child.gameObject);
 
@@ -322,16 +330,24 @@ public class SQLConsoleUI : MonoBehaviour
             return;
         }
 
-        
+        // cabeçalho só com os nomes "puros"
         GameObject head = Instantiate(rowPrefab, content);
         EnsureCellCount(head.transform, selectedColumns.Count);
         for (int i = 0; i < selectedColumns.Count; i++)
+        {
+            // extrai depois do ponto, se houver
+            var raw = selectedColumns[i];
+            var name = raw.Contains(".")
+                ? raw.Split('.').Last()
+                : raw;
             head.transform.GetChild(i).GetComponent<TMP_Text>().text =
-                $"<b>{selectedColumns[i]}</b>";
+                $"<b>{name}</b>";
+        }
 
-       
+        // primeira linha de dados
         CreateDynamicRowProp(enumer.Current);
 
+        // demais linhas
         while (enumer.MoveNext())
             CreateDynamicRowProp(enumer.Current);
 
@@ -401,8 +417,13 @@ public class SQLConsoleUI : MonoBehaviour
 
         for (int i = 0; i < selectedColumns.Count; i++)
         {
-            string col = selectedColumns[i];
-            var prop = item.GetType().GetProperty(col);
+            // extrai a parte depois do ponto para encontrar a propriedade
+            var raw = selectedColumns[i];
+            var propName = raw.Contains(".")
+                ? raw.Split('.').Last()
+                : raw;
+
+            var prop = item.GetType().GetProperty(propName);
             object v = prop != null ? prop.GetValue(item, null) : null;
             row.transform.GetChild(i).GetComponent<TMP_Text>().text =
                 v != null ? v.ToString() : string.Empty;

@@ -83,11 +83,7 @@ public class BanheiraCasaNamoradaSetup : MonoBehaviour
 
 
             Debug.Log($"Validator: todos os {lista.Count} itens vêm de IdMovel={ExpectedMovelId} → valid");
-            if (GameController.s.quantidadesDesafiosConcluidos[13] == false)
-            {
-                GameController.s.quantidadesDesafiosConcluidos[13] = true;
-                GameController.s.desafiosConcluidos++;
-            }
+            
             return true;
         });
     }

@@ -79,11 +79,7 @@ public class EstanteCasaNamoradaSetup : MonoBehaviour
 
 
             Debug.Log($"Validator: todos os {lista.Count} itens vêm de IdMovel={ExpectedMovelId} → valid");
-            if (GameController.s.quantidadesDesafiosConcluidos[23] == false)
-            {
-                GameController.s.quantidadesDesafiosConcluidos[23] = true;
-                GameController.s.desafiosConcluidos++;
-            }
+            
             return true;
         });
     }

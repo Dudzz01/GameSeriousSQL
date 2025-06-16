@@ -30,9 +30,17 @@ public class ChooseFases : MonoBehaviour
         }
     }
 
-    public void FaseFinal()
+    public void Fase3()
     {
         if (GameController.s.arrayFasesDesbloqueadas[2] == true)
+        {
+            SceneManager.LoadScene("Fase 3");
+        }
+    }
+
+    public void FaseFinal()
+    {
+        if (GameController.s.arrayFasesDesbloqueadas[3] == true)
         {
             SceneManager.LoadScene("Fase Final");
         }
@@ -44,11 +52,6 @@ public class ChooseFases : MonoBehaviour
     }
 
 
-    public void Fase3()
-    {
-
-        SceneManager.LoadScene("Fase 3");
-    }
 
     public void Fase4()
     {
@@ -119,6 +122,15 @@ public class ChooseFases : MonoBehaviour
         else
         {
             spriteLevel[2].sprite = spriteBotoes[1];
+        }
+
+        if (GameController.s.arrayFasesDesbloqueadas[3] == true)
+        {
+            spriteLevel[3].sprite = spriteBotoes[0];
+        }
+        else
+        {
+            spriteLevel[3].sprite = spriteBotoes[1];
         }
 
         //if (GameController.s.arrayFasesDesbloqueadas[3] == true)

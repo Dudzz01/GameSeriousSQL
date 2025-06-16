@@ -1254,7 +1254,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8411441634542321715, guid: c968d8ef219e2ae4b8c89b277a182b95, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 220.00008
+      value: 219.99998
       objectReference: {fileID: 0}
     - target: {fileID: 8659915984285808450, guid: c968d8ef219e2ae4b8c89b277a182b95, type: 3}
       propertyPath: m_AnchorMax.x
@@ -12166,7 +12166,7 @@ RectTransform:
   m_GameObject: {fileID: 1661989098}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.4, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1580641657}

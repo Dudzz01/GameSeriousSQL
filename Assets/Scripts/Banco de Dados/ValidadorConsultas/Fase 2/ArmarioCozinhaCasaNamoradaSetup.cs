@@ -80,11 +80,7 @@ public class ArmarioCozinhaCasaNamoradaSetup : MonoBehaviour
 
 
             Debug.Log($"Validator: todos os {lista.Count} itens vêm de IdMovel={ExpectedMovelId} → valid");
-            if (GameController.s.quantidadesDesafiosConcluidos[14] == false)
-            {
-                GameController.s.quantidadesDesafiosConcluidos[14] = true;
-                GameController.s.desafiosConcluidos++;
-            }
+            
             return true;
         });
     }

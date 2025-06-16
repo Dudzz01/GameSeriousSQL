@@ -29,7 +29,7 @@ public class GameController : MonoBehaviour
 
         switch (s.desafiosConcluidos)
         {
-            case 12:
+            case 3:
                 if(s.arrayFasesDesbloqueadas[1] == false)
                 {
                     s.arrayFasesDesbloqueadas[1] = true; // fase 2
@@ -37,13 +37,20 @@ public class GameController : MonoBehaviour
                 }
                 
                 break;
-            case 28:
+            case 7:
                 if(s.arrayFasesDesbloqueadas[2] == false)
                 {
-                    s.arrayFasesDesbloqueadas[2] = true; // final
+                    s.arrayFasesDesbloqueadas[2] = true; // fase 3
                     GetComponent<SaveGame>().SaveGameOfScene(s);
                 }
-                
+                break;
+            case 11:
+                if (s.arrayFasesDesbloqueadas[3] == false)
+                {
+                    s.arrayFasesDesbloqueadas[3] = true; // fase final
+                    GetComponent<SaveGame>().SaveGameOfScene(s);
+                }
+
                 break;
             
         }

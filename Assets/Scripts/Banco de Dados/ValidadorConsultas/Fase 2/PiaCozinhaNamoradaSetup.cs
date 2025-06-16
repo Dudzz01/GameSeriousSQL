@@ -79,11 +79,7 @@ public class PiaCozinhaNamoradaSetup : MonoBehaviour
 
 
             Debug.Log($"Validator: todos os {lista.Count} itens vêm de IdMovel={ExpectedMovelId} → valid");
-            if (GameController.s.quantidadesDesafiosConcluidos[26] == false)
-            {
-                GameController.s.quantidadesDesafiosConcluidos[26] = true;
-                GameController.s.desafiosConcluidos++;
-            }
+            
             return true;
         });
     }

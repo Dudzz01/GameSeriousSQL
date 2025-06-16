@@ -11,7 +11,7 @@ public class ArmarioBanheiroCasaNamoradaSetup : MonoBehaviour
     const int ExpectedMovelId = 24;
     static readonly HashSet<string> ExpectedItems = new HashSet<string> {
         "MedicamentoCasaNamorada",
-        "RoloPapelCasaNamorada"
+        "ChaveArmarioBanheiroCasaNamorada"
     };
 
     void Awake()

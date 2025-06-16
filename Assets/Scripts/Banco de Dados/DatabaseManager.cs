@@ -1,6 +1,7 @@
 using UnityEngine;
 using SQLite4Unity3d;
 using System.Collections.Generic;
+using System.IO;
 
 public class DatabaseManager : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class DatabaseManager : MonoBehaviour
 
     void Awake()
     {
+        var dst = Path.Combine(Application.persistentDataPath, "gameData.db");
+        if (File.Exists(dst)) File.Delete(dst);
+
         string dbFile = "gameData.db";
         string dbPath = DatabaseUtils.GetDatabasePath(dbFile);
         _connection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create);

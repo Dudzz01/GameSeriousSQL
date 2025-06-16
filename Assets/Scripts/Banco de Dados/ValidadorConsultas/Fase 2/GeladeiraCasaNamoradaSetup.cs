@@ -72,11 +72,7 @@ public class GeladeiraCasaNamoradaSetup : MonoBehaviour
             }
 
             Debug.Log("Validator: resposta correta → valid");
-            if (GameController.s.quantidadesDesafiosConcluidos[22] == false)
-            {
-                GameController.s.quantidadesDesafiosConcluidos[22] = true;
-                GameController.s.desafiosConcluidos++;
-            }
+            
             return true;
         });
     }

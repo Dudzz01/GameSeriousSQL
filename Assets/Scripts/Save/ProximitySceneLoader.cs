@@ -90,7 +90,7 @@ public class ProximitySceneLoader : MonoBehaviour
 
                 promptUI.SetActive(false);
                 promptUIErro.SetActive(true);
-                textoErro.text = "Não está permitido avançar para a próxima fase.\n\nDesafios Concluídos: " + GameController.s.desafiosConcluidos + "/" + quantidadeDesafiosConcluidosRequisito;
+                textoErro.text = "Não está permitido avançar para a próxima fase.\n\nChaves Encontradas: " + GameController.s.desafiosConcluidos + "/" + quantidadeDesafiosConcluidosRequisito;
                 playerTransform.gameObject.GetComponent<Player>().enabled = false;
                 playerTransform.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             }
