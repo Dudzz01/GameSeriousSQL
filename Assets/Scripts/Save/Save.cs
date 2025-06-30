@@ -13,5 +13,5 @@ public class Save
 
     public int desafiosConcluidos;
 
-    public bool[] quantidadesDesafiosConcluidos = new bool[30];
+    public bool[] quantidadesDesafiosConcluidos = new bool[70];
 }

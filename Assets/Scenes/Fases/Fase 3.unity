@@ -5432,7 +5432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bfe9b7d88d941146bbd0ca8a3839100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Fase Final
+  sceneName: Fase 4
   playerTransform: {fileID: 445502205}
   proximityDistance: 0.4
   interactKey: 306

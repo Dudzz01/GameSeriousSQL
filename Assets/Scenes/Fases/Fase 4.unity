@@ -1140,15 +1140,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1285439307344869384, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_Name
-      value: PiaCasaJoiner
+      value: PiaBanhoVizinho
       objectReference: {fileID: 0}
     - target: {fileID: 2133168539160361845, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.6
+      value: -0.26
       objectReference: {fileID: 0}
     - target: {fileID: 2133168539160361845, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.35
+      value: -3.77
       objectReference: {fileID: 0}
     - target: {fileID: 2133168539160361845, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1208,15 +1208,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: textoEnunciado
-      value: "Desafio: Encontre as chave(s), para isso  combine as tabelas Itens,
-        Moveis e Comodos usando INNER JOIN \u2014 relacionando Itens a Moveis por
-        IdMovel e Moveis a Comodos por IdComodo \u2014 e exiba as colunas NomeItem,
-        NomeMovel, Dica e NomeComodo, retornando apenas os registros cujo IdMovel
-        seja igual a 33. Obrigat\xF3rio uso de alias m(Moveis), i(Itens), c(Comodos)."
+      value: "Desafio: Liste NomeMovel, NomeItem, Dica e NomeComodo, filtrando por
+        m.IdComodo = 13 e m.IdMovel = 51. Use LEFT JOIN entre Moveis (m) e Itens
+        (i) para garantir que o m\xF3vel apare\xE7a mesmo sem item, e INNER JOIN
+        com Comodos (c). Pode ser que encontre uma chave!"
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.size
-      value: 23
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[0]
@@ -1244,7 +1243,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[6]
-      value: 33
+      value: 51
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[7]
@@ -1312,7 +1311,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[23]
-      value: Moveis
+      value: LEFT
+      objectReference: {fileID: 0}
+    - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
+      propertyPath: tokens.Array.data[24]
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
+      propertyPath: tokens.Array.data[25]
+      value: AND
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: allowedTables.Array.size
@@ -1358,7 +1365,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 247956400}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e1559e21223d924f814a10af4b5d86b, type: 3}
+  m_Script: {fileID: 11500000, guid: ba46975a4806e42469dc929ffe279a36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &248213005
@@ -1482,7 +1489,7 @@ GameObject:
   m_Component:
   - component: {fileID: 349709222}
   m_Layer: 0
-  m_Name: QuartoObjects
+  m_Name: SalaObjects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3354,15 +3361,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1285439307344869384, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_Name
-      value: GuardaRoupaJoiner
+      value: SofaVizinho
       objectReference: {fileID: 0}
     - target: {fileID: 2133168539160361845, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.8
+      value: -0.64
       objectReference: {fileID: 0}
     - target: {fileID: 2133168539160361845, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.182
+      value: -0.57
       objectReference: {fileID: 0}
     - target: {fileID: 2133168539160361845, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3414,7 +3421,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: movableName
-      value: Armario
+      value: Sofa
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: interactRadius
@@ -3422,15 +3429,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: textoEnunciado
-      value: "Desafio: Encontre as chave(s), para isso  combine as tabelas Itens,
-        Moveis e Comodos usando INNER JOIN \u2014 relacionando Itens a Moveis por
-        IdMovel e Moveis a Comodos por IdComodo \u2014 e exiba as colunas NomeItem,
-        NomeMovel, Dica e NomeComodo, retornando apenas os registros cujo IdMovel
-        seja igual a 38. Obrigat\xF3rio uso de alias m(Moveis), i(Itens), c(Comodos)."
+      value: "Desafio: Liste NomeMovel, NomeItem, Dica e NomeComodo, filtrando por
+        m.IdComodo = 11 e m.IdMovel = 42. Use LEFT JOIN entre Moveis (m) e Itens
+        (i) para garantir que o m\xF3vel apare\xE7a mesmo sem item, e INNER JOIN
+        com Comodos (c). Pode ser que encontre uma chave!"
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.size
-      value: 23
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[0]
@@ -3458,7 +3464,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[6]
-      value: 38
+      value: 42
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[7]
@@ -3526,7 +3532,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[23]
-      value: Moveis
+      value: LEFT
+      objectReference: {fileID: 0}
+    - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
+      propertyPath: tokens.Array.data[24]
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
+      propertyPath: tokens.Array.data[25]
+      value: AND
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: allowedTables.Array.size
@@ -3572,7 +3586,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 429226623}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 643525fe20542a84ba2641f2848db7e8, type: 3}
+  m_Script: {fileID: 11500000, guid: 0a26d5e2135fca54faf8e3488e7f9ca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &445502205 stripped
@@ -4084,15 +4098,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1285439307344869384, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_Name
-      value: ArmarioBanheiroJoiner
+      value: BanheiraVizinho
       objectReference: {fileID: 0}
     - target: {fileID: 2133168539160361845, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.68
+      value: -0.88
       objectReference: {fileID: 0}
     - target: {fileID: 2133168539160361845, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.49
+      value: -6.22
       objectReference: {fileID: 0}
     - target: {fileID: 2133168539160361845, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4144,7 +4158,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: movableName
-      value: Armario
+      value: Banheira
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: interactRadius
@@ -4152,15 +4166,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: textoEnunciado
-      value: "Desafio: Encontre as chave(s), para isso  combine as tabelas Itens,
-        Moveis e Comodos usando INNER JOIN \u2014 relacionando Itens a Moveis por
-        IdMovel e Moveis a Comodos por IdComodo \u2014 e exiba as colunas NomeItem,
-        NomeMovel, Dica e NomeComodo, retornando apenas os registros cujo IdMovel
-        seja igual a 36. Obrigat\xF3rio uso de alias m(Moveis), i(Itens), c(Comodos)."
+      value: "Desafio: Liste NomeMovel, NomeItem, Dica e NomeComodo, filtrando por
+        m.IdComodo = 13 e m.IdMovel = 52. Use LEFT JOIN entre Moveis (m) e Itens
+        (i) para garantir que o m\xF3vel apare\xE7a mesmo sem item, e INNER JOIN
+        com Comodos (c). Pode ser que encontre uma chave!"
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.size
-      value: 23
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[0]
@@ -4188,7 +4201,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[6]
-      value: 36
+      value: RIGHT
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[7]
@@ -4256,7 +4269,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[23]
-      value: Moveis
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
+      propertyPath: tokens.Array.data[24]
+      value: 52
+      objectReference: {fileID: 0}
+    - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
+      propertyPath: tokens.Array.data[25]
+      value: AND
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: allowedTables.Array.size
@@ -4302,7 +4323,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 667930880}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f80ef59b7635e44b80578a88fe1acf1, type: 3}
+  m_Script: {fileID: 11500000, guid: 732f75c5cdaa51c48a66c80f43310e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &707293358
@@ -4553,15 +4574,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1285439307344869384, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_Name
-      value: CamaJoinerzinho
+      value: MesaVizinho
       objectReference: {fileID: 0}
     - target: {fileID: 2133168539160361845, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.045
+      value: 2.26
       objectReference: {fileID: 0}
     - target: {fileID: 2133168539160361845, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.289
+      value: -0.21
       objectReference: {fileID: 0}
     - target: {fileID: 2133168539160361845, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4613,7 +4634,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: movableName
-      value: Cama
+      value: Mesa
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: interactRadius
@@ -4621,15 +4642,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: textoEnunciado
-      value: "Desafio: Encontre as chave(s), para isso  combine as tabelas Itens,
-        Moveis e Comodos usando INNER JOIN \u2014 relacionando Itens a Moveis por
-        IdMovel e Moveis a Comodos por IdComodo \u2014 e exiba as colunas NomeItem,
-        NomeMovel, Dica e NomeComodo, retornando apenas os registros cujo IdMovel
-        seja igual a 37. Obrigat\xF3rio uso de alias m(Moveis), i(Itens), c(Comodos)."
+      value: "Desafio: Liste NomeMovel, NomeItem, Dica e NomeComodo, filtrando por
+        m.IdComodo = 11 e m.IdMovel = 41. Use LEFT JOIN entre Moveis (m) e Itens
+        (i) para garantir que o m\xF3vel apare\xE7a mesmo sem item, e INNER JOIN
+        com Comodos (c). Pode ser que encontre uma chave!"
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.size
-      value: 23
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[0]
@@ -4657,7 +4677,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[6]
-      value: 37
+      value: 41
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[7]
@@ -4725,7 +4745,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[23]
-      value: Moveis
+      value: LEFT
+      objectReference: {fileID: 0}
+    - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
+      propertyPath: tokens.Array.data[24]
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
+      propertyPath: tokens.Array.data[25]
+      value: AND
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: allowedTables.Array.size
@@ -4771,7 +4799,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 738021396}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30116f59650e44942b618d627406f240, type: 3}
+  m_Script: {fileID: 11500000, guid: 3af1f54d49893524c81583b822627ec8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &747525765
@@ -5037,7 +5065,7 @@ Transform:
   m_GameObject: {fileID: 867998865}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.546, y: 3.363, z: 235.00665}
+  m_LocalPosition: {x: -2.47, y: -0.59, z: 235.00665}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5580,7 +5608,7 @@ MonoBehaviour:
   promptUIErro: {fileID: 1460154103}
   botaoFecharErro: {fileID: 375358789}
   textoErro: {fileID: 961813013}
-  quantidadeDesafiosConcluidosRequisito: 11
+  quantidadeDesafiosConcluidosRequisito: 17
 --- !u!4 &983948825
 Transform:
   m_ObjectHideFlags: 0
@@ -5590,7 +5618,7 @@ Transform:
   m_GameObject: {fileID: 983948823}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.57, y: 5.72, z: 2.313115}
+  m_LocalPosition: {x: -5.59, y: -0.43, z: 2.313115}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5606,15 +5634,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1285439307344869384, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_Name
-      value: MesaCasaJoiner
+      value: PiaVizinho
       objectReference: {fileID: 0}
     - target: {fileID: 2133168539160361845, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.365
+      value: -2.831
       objectReference: {fileID: 0}
     - target: {fileID: 2133168539160361845, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.078
+      value: -3.362
       objectReference: {fileID: 0}
     - target: {fileID: 2133168539160361845, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5666,7 +5694,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: movableName
-      value: Mesa
+      value: Pia
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: interactRadius
@@ -5674,15 +5702,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: textoEnunciado
-      value: "Desafio: Encontre as chave(s), para isso  combine as tabelas Itens,
-        Moveis e Comodos usando INNER JOIN \u2014 relacionando Itens a Moveis por
-        IdMovel e Moveis a Comodos por IdComodo \u2014 e exiba as colunas NomeItem,
-        NomeMovel, Dica e NomeComodo, retornando apenas os registros cujo IdMovel
-        seja igual a 32. Obrigat\xF3rio uso de alias m(Moveis), i(Itens), c(Comodos)."
+      value: "Desafio: Liste NomeMovel, NomeItem, Dica e NomeComodo, filtrando por
+        m.IdComodo = 12 e m.IdMovel = 47. Use LEFT JOIN entre Moveis (m) e Itens
+        (i) para garantir que o m\xF3vel apare\xE7a mesmo sem item, e INNER JOIN
+        com Comodos (c). Pode ser que encontre uma chave!"
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.size
-      value: 23
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[0]
@@ -5710,7 +5737,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[6]
-      value: 32
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[7]
@@ -5778,7 +5805,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[23]
-      value: Moveis
+      value: LEFT
+      objectReference: {fileID: 0}
+    - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
+      propertyPath: tokens.Array.data[24]
+      value: 47
+      objectReference: {fileID: 0}
+    - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
+      propertyPath: tokens.Array.data[25]
+      value: AND
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: allowedTables.Array.size
@@ -5803,7 +5838,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1285439307344869384, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 990984682}
+      addedObject: {fileID: 990984680}
   m_SourcePrefab: {fileID: 100100000, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
 --- !u!4 &990984678 stripped
 Transform:
@@ -5815,7 +5850,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1285439307344869384, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
   m_PrefabInstance: {fileID: 990984677}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &990984682
+--- !u!114 &990984680
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5824,7 +5859,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 990984679}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ab02199dcb413946923e5d99a5a0cca, type: 3}
+  m_Script: {fileID: 11500000, guid: 89df31fb47f6aa149ae57a281d8552e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1003449811
@@ -6242,15 +6277,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1285439307344869384, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_Name
-      value: VasoJoiner
+      value: VasoVizinho
       objectReference: {fileID: 0}
     - target: {fileID: 2133168539160361845, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.55
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 2133168539160361845, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.84
+      value: -5.04
       objectReference: {fileID: 0}
     - target: {fileID: 2133168539160361845, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6310,15 +6345,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: textoEnunciado
-      value: "Desafio: Encontre as chave(s), para isso  combine as tabelas Itens,
-        Moveis e Comodos usando INNER JOIN \u2014 relacionando Itens a Moveis por
-        IdMovel e Moveis a Comodos por IdComodo \u2014 e exiba as colunas NomeItem,
-        NomeMovel, Dica e NomeComodo, retornando apenas os registros cujo IdMovel
-        seja igual a 34. Obrigat\xF3rio uso de alias m(Moveis), i(Itens), c(Comodos)."
+      value: "Desafio: Liste NomeMovel, NomeItem, Dica e NomeComodo, filtrando por
+        m.IdComodo = 13 e m.IdMovel = 49. Use LEFT JOIN entre Moveis (m) e Itens
+        (i) para garantir que o m\xF3vel apare\xE7a mesmo sem item, e INNER JOIN
+        com Comodos (c). Pode ser que encontre uma chave!"
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.size
-      value: 23
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[0]
@@ -6346,7 +6380,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[6]
-      value: 34
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[7]
@@ -6414,7 +6448,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[23]
-      value: Moveis
+      value: LEFT
+      objectReference: {fileID: 0}
+    - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
+      propertyPath: tokens.Array.data[24]
+      value: 49
+      objectReference: {fileID: 0}
+    - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
+      propertyPath: tokens.Array.data[25]
+      value: AND
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: allowedTables.Array.size
@@ -6460,7 +6502,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1084686048}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a6b5a7308c85824cac8c6955ee79e48, type: 3}
+  m_Script: {fileID: 11500000, guid: a9c2440576395394e99917dbae51f639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1175516028
@@ -6979,7 +7021,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1285439307344869384, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_Name
-      value: GeladeiraJoiner
+      value: GeladeiraVizinho
       objectReference: {fileID: 0}
     - target: {fileID: 2133168539160361845, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7047,15 +7089,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: textoEnunciado
-      value: "Desafio: Encontre as chave(s), para isso  combine as tabelas Itens,
-        Moveis e Comodos usando INNER JOIN \u2014 relacionando Itens a Moveis por
-        IdMovel e Moveis a Comodos por IdComodo \u2014 e exiba as colunas NomeItem,
-        NomeMovel, Dica e NomeComodo, retornando apenas os registros cujo IdMovel
-        seja igual a 31. Obrigat\xF3rio uso de alias m(Moveis), i(Itens), c(Comodos)."
+      value: "Desafio: Liste NomeMovel, NomeItem, Dica e NomeComodo, filtrando por
+        m.IdComodo = 12 e m.IdMovel = 46. Use LEFT JOIN entre Moveis (m) e Itens
+        (i) para garantir que o m\xF3vel apare\xE7a mesmo sem item, e INNER JOIN
+        com Comodos (c). Pode ser que encontre uma chave!"
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.size
-      value: 23
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[0]
@@ -7083,7 +7124,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[6]
-      value: 31
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[7]
@@ -7151,7 +7192,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[23]
-      value: Moveis
+      value: LEFT
+      objectReference: {fileID: 0}
+    - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
+      propertyPath: tokens.Array.data[24]
+      value: 46
+      objectReference: {fileID: 0}
+    - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
+      propertyPath: tokens.Array.data[25]
+      value: AND
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: allowedTables.Array.size
@@ -7197,7 +7246,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1290706925}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19221dfd79fa1e34c82b503be96fdc8a, type: 3}
+  m_Script: {fileID: 11500000, guid: d8e398760c3e72e408d886a488296bc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1294288610 stripped
@@ -7514,7 +7563,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1285439307344869384, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_Name
-      value: FogaoJoiner
+      value: FogaoVizinho
       objectReference: {fileID: 0}
     - target: {fileID: 2133168539160361845, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7582,15 +7631,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: textoEnunciado
-      value: "Desafio: Encontre as chave(s), para isso  combine as tabelas Itens,
-        Moveis e Comodos usando INNER JOIN \u2014 relacionando Itens a Moveis por
-        IdMovel e Moveis a Comodos por IdComodo \u2014 e exiba as colunas NomeItem,
-        NomeMovel, Dica e NomeComodo, retornando apenas os registros cujo IdMovel
-        seja igual a 30. Obrigat\xF3rio uso de alias m(Moveis), i(Itens), c(Comodos)."
+      value: "Desafio: Liste NomeMovel, NomeItem, Dica e NomeComodo, filtrando por
+        m.IdComodo = 12 e m.IdMovel = 45. Use LEFT JOIN entre Moveis (m) e Itens
+        (i) para garantir que o m\xF3vel apare\xE7a mesmo sem item, e INNER JOIN
+        com Comodos (c). Pode ser que encontre uma chave!"
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.size
-      value: 23
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[0]
@@ -7618,7 +7666,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[6]
-      value: 30
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[7]
@@ -7686,7 +7734,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[23]
-      value: Moveis
+      value: LEFT
+      objectReference: {fileID: 0}
+    - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
+      propertyPath: tokens.Array.data[24]
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
+      propertyPath: tokens.Array.data[25]
+      value: AND
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: allowedTables.Array.size
@@ -7711,7 +7767,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1285439307344869384, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1336133382}
+      addedObject: {fileID: 1336133380}
   m_SourcePrefab: {fileID: 100100000, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
 --- !u!4 &1336133378 stripped
 Transform:
@@ -7723,7 +7779,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1285439307344869384, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
   m_PrefabInstance: {fileID: 1336133377}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1336133382
+--- !u!114 &1336133380
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7732,7 +7788,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1336133379}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 969dd5e6fa5762b4eb37977b35f398cb, type: 3}
+  m_Script: {fileID: 11500000, guid: ffa286ca424588c44a8c1f57f7612988, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1379340188
@@ -8061,6 +8117,16 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: -22, y: 24, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 17
+      m_TileSpriteIndex: 15
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: -9, y: 24, z: 0}
     second:
       serializedVersion: 2
@@ -8107,8 +8173,8 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: e193127c4d5a0f045b14a2b6bede0576, type: 2}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 784888f20d932624fa9316d7f53d89ac, type: 2}
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 45e8e32efbf64864a9eed237499eb0df, type: 2}
   - m_RefCount: 1
@@ -8152,8 +8218,8 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: -970961069, guid: df27e4ebcb348424dbe386df111246bc, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: -841004759, guid: df27e4ebcb348424dbe386df111246bc, type: 3}
   - m_RefCount: 1
@@ -8171,7 +8237,7 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: -664286968, guid: df27e4ebcb348424dbe386df111246bc, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 9
+  - m_RefCount: 10
     m_Data:
       e00: 1
       e01: 0
@@ -8190,7 +8256,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 9
+  - m_RefCount: 10
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -8586,15 +8652,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1285439307344869384, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_Name
-      value: PrateleiraJoiner
+      value: RackVizinho
       objectReference: {fileID: 0}
     - target: {fileID: 2133168539160361845, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.18
+      value: 2.63
       objectReference: {fileID: 0}
     - target: {fileID: 2133168539160361845, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.309
+      value: 0.37
       objectReference: {fileID: 0}
     - target: {fileID: 2133168539160361845, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8646,7 +8712,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: movableName
-      value: Prateleira
+      value: Rack
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: interactRadius
@@ -8654,15 +8720,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: textoEnunciado
-      value: "Desafio: Encontre as chave(s), para isso  combine as tabelas Itens,
-        Moveis e Comodos usando INNER JOIN \u2014 relacionando Itens a Moveis por
-        IdMovel e Moveis a Comodos por IdComodo \u2014 e exiba as colunas NomeItem,
-        NomeMovel, Dica e NomeComodo, retornando apenas os registros cujo IdMovel
-        seja igual a 40. Obrigat\xF3rio uso de alias m(Moveis), i(Itens), c(Comodos)."
+      value: "Desafio: Liste NomeMovel, NomeItem, Dica e NomeComodo, filtrando por
+        m.IdComodo = 11 e m.IdMovel = 44. Use LEFT JOIN entre Moveis (m) e Itens
+        (i) para garantir que o m\xF3vel apare\xE7a mesmo sem item, e INNER JOIN
+        com Comodos (c). Pode ser que encontre uma chave!"
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.size
-      value: 23
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[0]
@@ -8690,7 +8755,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[6]
-      value: 40
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[7]
@@ -8758,7 +8823,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[23]
-      value: Moveis
+      value: LEFT
+      objectReference: {fileID: 0}
+    - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
+      propertyPath: tokens.Array.data[24]
+      value: 44
+      objectReference: {fileID: 0}
+    - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
+      propertyPath: tokens.Array.data[25]
+      value: AND
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: allowedTables.Array.size
@@ -8804,7 +8877,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1465318058}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66d06ecc7a1821a4fb0f7bcc2e0fd25b, type: 3}
+  m_Script: {fileID: 11500000, guid: a501c7584336fe24890150d0a7ff3cd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1495666584
@@ -9085,15 +9158,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1285439307344869384, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_Name
-      value: EspelhoJoiner
+      value: EspelhoVizinho
       objectReference: {fileID: 0}
     - target: {fileID: 2133168539160361845, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.77
+      value: -1.03
       objectReference: {fileID: 0}
     - target: {fileID: 2133168539160361845, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.23
+      value: -3.55
       objectReference: {fileID: 0}
     - target: {fileID: 2133168539160361845, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9153,15 +9226,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: textoEnunciado
-      value: "Desafio: Encontre as chave(s), para isso  combine as tabelas Itens,
-        Moveis e Comodos usando INNER JOIN \u2014 relacionando Itens a Moveis por
-        IdMovel e Moveis a Comodos por IdComodo \u2014 e exiba as colunas NomeItem,
-        NomeMovel, Dica e NomeComodo, retornando apenas os registros cujo IdMovel
-        seja igual a 35. Obrigat\xF3rio uso de alias m(Moveis), i(Itens), c(Comodos)."
+      value: "Desafio: Liste NomeMovel, NomeItem, Dica e NomeComodo, filtrando por
+        m.IdComodo = 13 e m.IdMovel = 50. Use LEFT JOIN entre Moveis (m) e Itens
+        (i) para garantir que o m\xF3vel apare\xE7a mesmo sem item, e INNER JOIN
+        com Comodos (c). Pode ser que encontre uma chave!"
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.size
-      value: 23
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[0]
@@ -9189,7 +9261,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[6]
-      value: 35
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[7]
@@ -9257,7 +9329,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[23]
-      value: Moveis
+      value: LEFT
+      objectReference: {fileID: 0}
+    - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
+      propertyPath: tokens.Array.data[24]
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
+      propertyPath: tokens.Array.data[25]
+      value: AND
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: allowedTables.Array.size
@@ -9303,7 +9383,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1581055039}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c94b90e2858a01549a18b21df3a81129, type: 3}
+  m_Script: {fileID: 11500000, guid: 88c33eeadc8bf3a488982d2b23645c0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1600445558
@@ -9711,7 +9791,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1285439307344869384, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_Name
-      value: ArmarioCozinhaCasaJoiner
+      value: ArmarioCozinhaVizinho
       objectReference: {fileID: 0}
     - target: {fileID: 2133168539160361845, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9779,15 +9859,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: textoEnunciado
-      value: "Desafio: Encontre as chave(s), para isso  combine as tabelas Itens,
-        Moveis e Comodos usando INNER JOIN \u2014 relacionando Itens a Moveis por
-        IdMovel e Moveis a Comodos por IdComodo \u2014 e exiba as colunas NomeItem,
-        NomeMovel, Dica e NomeComodo, retornando apenas os registros cujo IdMovel
-        seja igual a 29. Obrigat\xF3rio uso de alias m(Moveis), i(Itens), c(Comodos)."
+      value: "Desafio: Liste NomeMovel, NomeItem, Dica e NomeComodo, filtrando por
+        m.IdComodo = 12 e m.IdMovel = 48. Use LEFT JOIN entre Moveis (m) e Itens
+        (i) para garantir que o m\xF3vel apare\xE7a mesmo sem item, e INNER JOIN
+        com Comodos (c). Pode ser que encontre uma chave!"
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.size
-      value: 23
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[0]
@@ -9815,7 +9894,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[6]
-      value: 29
+      value: 48
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[7]
@@ -9883,7 +9962,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[23]
-      value: Moveis
+      value: LEFT
+      objectReference: {fileID: 0}
+    - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
+      propertyPath: tokens.Array.data[24]
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
+      propertyPath: tokens.Array.data[25]
+      value: AND
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: allowedTables.Array.size
@@ -9908,7 +9995,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1285439307344869384, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1639549273}
+      addedObject: {fileID: 1639549271}
   m_SourcePrefab: {fileID: 100100000, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
 --- !u!4 &1639549269 stripped
 Transform:
@@ -9920,7 +10007,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1285439307344869384, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
   m_PrefabInstance: {fileID: 1639549268}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1639549273
+--- !u!114 &1639549271
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9929,7 +10016,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1639549270}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4eda0461f821896449e17dc7e5f6d70c, type: 3}
+  m_Script: {fileID: 11500000, guid: bab3bb3f15ebd854b9ddb125aef62431, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1653826213
@@ -10569,15 +10656,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1285439307344869384, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_Name
-      value: EscravinhaJoiner
+      value: EstanteSala
       objectReference: {fileID: 0}
     - target: {fileID: 2133168539160361845, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.777
+      value: 1.08
       objectReference: {fileID: 0}
     - target: {fileID: 2133168539160361845, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.188
+      value: 0.71
       objectReference: {fileID: 0}
     - target: {fileID: 2133168539160361845, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10629,7 +10716,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: movableName
-      value: Escravinha
+      value: Estante
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: interactRadius
@@ -10637,15 +10724,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: textoEnunciado
-      value: "Desafio: Encontre as chave(s), para isso  combine as tabelas Itens,
-        Moveis e Comodos usando INNER JOIN \u2014 relacionando Itens a Moveis por
-        IdMovel e Moveis a Comodos por IdComodo \u2014 e exiba as colunas NomeItem,
-        NomeMovel, Dica e NomeComodo, retornando apenas os registros cujo IdMovel
-        seja igual a 39. Obrigat\xF3rio uso de alias m(Moveis), i(Itens), c(Comodos)."
+      value: "Desafio: Liste NomeMovel, NomeItem, Dica e NomeComodo, filtrando por
+        m.IdComodo = 11 e m.IdMovel = 43. Use LEFT JOIN entre Moveis (m) e Itens
+        (i) para garantir que o m\xF3vel apare\xE7a mesmo sem item, e INNER JOIN
+        com Comodos (c). Pode ser que encontre uma chave!"
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.size
-      value: 23
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[0]
@@ -10673,7 +10759,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[6]
-      value: 39
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[7]
@@ -10741,7 +10827,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[23]
-      value: Moveis
+      value: LEFT
+      objectReference: {fileID: 0}
+    - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
+      propertyPath: tokens.Array.data[24]
+      value: 43
+      objectReference: {fileID: 0}
+    - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
+      propertyPath: tokens.Array.data[25]
+      value: AND
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: allowedTables.Array.size
@@ -10787,7 +10881,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1848785261}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 518ed393c1aee6745a53039039963de4, type: 3}
+  m_Script: {fileID: 11500000, guid: 3951007a80c79ed43befdd4743c97219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1887991368
@@ -12671,6 +12765,96 @@ Tilemap:
   m_GameObject: {fileID: 1888636686}
   m_Enabled: 1
   m_Tiles:
+  - first: {x: -19, y: -3, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 19
+      m_TileSpriteIndex: 19
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -18, y: -3, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 18
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -17, y: -3, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 21
+      m_TileSpriteIndex: 21
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -19, y: -2, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 20
+      m_TileSpriteIndex: 20
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -18, y: -2, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 23
+      m_TileSpriteIndex: 23
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -17, y: -2, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 22
+      m_TileSpriteIndex: 22
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -19, y: -1, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 24
+      m_TileSpriteIndex: 24
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -18, y: -1, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 26
+      m_TileSpriteIndex: 26
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -17, y: -1, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 25
+      m_TileSpriteIndex: 25
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: -12, y: -1, z: 0}
     second:
       serializedVersion: 2
@@ -13643,7 +13827,7 @@ Tilemap:
       m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: edbe6894c4692104f821e46c33daf598, type: 2}
   - m_RefCount: 5
     m_Data: {fileID: 11400000, guid: 303c40378027bed4eb51a38d06dc6cab, type: 2}
@@ -13681,21 +13865,21 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 0385299a1bd342443a116616aee127eb, type: 2}
   - m_RefCount: 27
     m_Data: {fileID: 11400000, guid: fb75143a0f9898e44a52be822fc3e3ca, type: 2}
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 5fec6bda194d3cb418f1c7fbb41a04c9, type: 2}
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: a273eba2db09ec8448a1ba9d84c8af60, type: 2}
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 1c563126e23da364c841544baa2127ea, type: 2}
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: bda839edae158cd48be45d74707b35d0, type: 2}
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 7d6d32e9d9f39d34fbd380b0a2ed8fe7, type: 2}
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 8187551fa8b5f4e4aa90425dc25798ac, type: 2}
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: ca6053d4659d5f74d989e1391bed9763, type: 2}
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 60d641c691ef05d4c9b7b6e835109b2a, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 3
@@ -13734,26 +13918,26 @@ Tilemap:
     m_Data: {fileID: 1476378215, guid: df27e4ebcb348424dbe386df111246bc, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: 33991177, guid: df27e4ebcb348424dbe386df111246bc, type: 3}
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {fileID: 788857430, guid: df27e4ebcb348424dbe386df111246bc, type: 3}
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {fileID: -524337281, guid: df27e4ebcb348424dbe386df111246bc, type: 3}
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {fileID: 1793601600, guid: df27e4ebcb348424dbe386df111246bc, type: 3}
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {fileID: -2020268066, guid: df27e4ebcb348424dbe386df111246bc, type: 3}
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {fileID: 442860499, guid: df27e4ebcb348424dbe386df111246bc, type: 3}
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {fileID: 2109792708, guid: df27e4ebcb348424dbe386df111246bc, type: 3}
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {fileID: 1545372604, guid: df27e4ebcb348424dbe386df111246bc, type: 3}
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {fileID: -252571991, guid: df27e4ebcb348424dbe386df111246bc, type: 3}
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {fileID: 773726344, guid: df27e4ebcb348424dbe386df111246bc, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 97
+  - m_RefCount: 106
     m_Data:
       e00: 1
       e01: 0
@@ -13772,7 +13956,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 97
+  - m_RefCount: 106
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -14332,7 +14516,7 @@ Transform:
   m_GameObject: {fileID: 1980199966}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.57, y: 0.27, z: 341.09503}
+  m_LocalPosition: {x: -2.67, y: 6.38, z: 341.09503}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
