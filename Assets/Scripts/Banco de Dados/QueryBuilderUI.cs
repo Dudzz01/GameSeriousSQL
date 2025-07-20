@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using static System.Net.Mime.MediaTypeNames;
+using UnityEngine.EventSystems;
 
 public class QueryBuilderUI : MonoBehaviour
 {
@@ -11,18 +11,17 @@ public class QueryBuilderUI : MonoBehaviour
     public string[] availableTokens;
 
     [Header("Referências")]
-    public GameObject tokenPrefab;       
-    public Transform poolContainer;      
-    public Transform assemblyContainer;  
+    public GameObject tokenPrefab;
+    public Transform poolContainer;
+    public Transform assemblyContainer;
     public TextMeshProUGUI assembledText;
-    private RectTransform textRT;            
+    private RectTransform textRT;
 
-
-    public Button backspaceButton;       
-    public Button clearButton;          
-    public Button executeButton;         
-    public Button closeButton;           
-    public SQLConsoleUI sqlConsoleUI;   
+    public Button backspaceButton;
+    public Button clearButton;
+    public Button executeButton;
+    public Button closeButton;
+    public SQLConsoleUI sqlConsoleUI;
 
     List<string> tokens = new List<string>();
     string[] allowedTables;
@@ -30,43 +29,33 @@ public class QueryBuilderUI : MonoBehaviour
 
     void Awake()
     {
-        
         gameObject.SetActive(false);
         textRT = assembledText.rectTransform;
-
+        assembledText.margin = new Vector4(0, 12, 0, 30);  // margem (left, top, right, bottom)
         
+
         backspaceButton.onClick.AddListener(RemoveLast);
         clearButton.onClick.AddListener(ClearAll);
         executeButton.onClick.AddListener(OnExecute);
         closeButton.onClick.AddListener(OnClose);
     }
 
-    
     public void Open(string[] allowedTables, Delegate validator)
     {
         this.allowedTables = allowedTables;
         this.validator = validator;
 
-        
         RefreshPool();
-
-        
         tokens.Clear();
         UpdateAssembly();
-
-       
         gameObject.SetActive(true);
 
-        
         sqlConsoleUI.Open(allowedTables, validator);
     }
 
     void RefreshPool()
     {
-        
         foreach (Transform c in poolContainer) Destroy(c.gameObject);
-
-        
         foreach (var t in availableTokens)
         {
             var go = Instantiate(tokenPrefab, poolContainer);
@@ -94,40 +83,45 @@ public class QueryBuilderUI : MonoBehaviour
 
     void UpdateAssembly()
     {
-        string sql = string.Join(" ", tokens);
-        assembledText.text = sql;
+        // 1) monta o SQL cru
+        string rawSql = string.Join(" ", tokens);
 
-  
-        Vector2 pref = assembledText.GetPreferredValues(sql);
+        // 2) quebra de linha só para exibição, não altera rawSql
+        //    coloca \n antes de cada palavra-chave no início de um bloco
+        string displaySql = System.Text.RegularExpressions.Regex.Replace(
+            rawSql,
+            @"\b(FROM|WHERE|INNER|LEFT|GROUP BY|HAVING|LIMIT)\b",
+            "\n$1",
+            System.Text.RegularExpressions.RegexOptions.IgnoreCase
+        ).TrimStart('\n');
 
-        
-        textRT.sizeDelta = new Vector2(pref.x, textRT.sizeDelta.y);
+        // 3) aplica apenas displaySql ao TextMeshPro
+        assembledText.text = displaySql;
+        assembledText.margin = new Vector4(0, 12, 0, 30);
+        // 4) ajusta largura/altura do RectTransform ao tamanho do texto exibido
+        Vector2 pref = assembledText.GetPreferredValues(displaySql);
+        textRT.sizeDelta = new Vector2(pref.x, pref.y);
 
-     
         LayoutRebuilder.ForceRebuildLayoutImmediate(textRT);
 
-
-      
+        // 5) recria os botões/tokens montados
         foreach (Transform c in assemblyContainer) Destroy(c.gameObject);
         foreach (var t in tokens)
         {
             var go = Instantiate(tokenPrefab, assemblyContainer);
             go.GetComponent<TokenButton>().Init(t, _ => { });
         }
-
-     
     }
 
     public void OnExecute()
     {
-        
-        string sql = assembledText.text;
-        sqlConsoleUI.ExecuteRaw(sql);
+        // *executa sempre o SQL cru*, sem nenhuma quebra
+        string rawSql = string.Join(" ", tokens);
+        sqlConsoleUI.ExecuteRaw(rawSql);
     }
 
     public void OnClose()
     {
-        
         sqlConsoleUI.Close();
         gameObject.SetActive(false);
     }
