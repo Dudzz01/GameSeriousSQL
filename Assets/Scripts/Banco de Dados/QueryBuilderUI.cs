@@ -31,7 +31,7 @@ public class QueryBuilderUI : MonoBehaviour
     {
         gameObject.SetActive(false);
         textRT = assembledText.rectTransform;
-        assembledText.margin = new Vector4(0, 12, 0, 30);  // margem (left, top, right, bottom)
+        assembledText.margin = new Vector4(0, 12, 0, 30);  
         
 
         backspaceButton.onClick.AddListener(RemoveLast);
@@ -83,11 +83,10 @@ public class QueryBuilderUI : MonoBehaviour
 
     void UpdateAssembly()
     {
-        // 1) monta o SQL cru
+
         string rawSql = string.Join(" ", tokens);
 
-        // 2) quebra de linha só para exibição, não altera rawSql
-        //    coloca \n antes de cada palavra-chave no início de um bloco
+      
         string displaySql = System.Text.RegularExpressions.Regex.Replace(
             rawSql,
             @"\b(FROM|WHERE|INNER|LEFT|GROUP BY|HAVING|LIMIT)\b",
@@ -95,16 +94,16 @@ public class QueryBuilderUI : MonoBehaviour
             System.Text.RegularExpressions.RegexOptions.IgnoreCase
         ).TrimStart('\n');
 
-        // 3) aplica apenas displaySql ao TextMeshPro
+       
         assembledText.text = displaySql;
         assembledText.margin = new Vector4(0, 12, 0, 30);
-        // 4) ajusta largura/altura do RectTransform ao tamanho do texto exibido
+     
         Vector2 pref = assembledText.GetPreferredValues(displaySql);
         textRT.sizeDelta = new Vector2(pref.x, pref.y);
 
         LayoutRebuilder.ForceRebuildLayoutImmediate(textRT);
 
-        // 5) recria os botões/tokens montados
+      
         foreach (Transform c in assemblyContainer) Destroy(c.gameObject);
         foreach (var t in tokens)
         {
@@ -115,7 +114,7 @@ public class QueryBuilderUI : MonoBehaviour
 
     public void OnExecute()
     {
-        // *executa sempre o SQL cru*, sem nenhuma quebra
+        
         string rawSql = string.Join(" ", tokens);
         sqlConsoleUI.ExecuteRaw(rawSql);
     }

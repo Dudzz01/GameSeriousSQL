@@ -6162,7 +6162,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: movableName
-      value: Banheiro
+      value: Vaso
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: interactRadius
@@ -7696,7 +7696,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 21.000015, y: -49, z: 0}
-  m_LocalScale: {x: 0.93825, y: 0.93825, z: 0.93825}
+  m_LocalScale: {x: 2, y: 2, z: 0.93825}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1003449812}

@@ -41,7 +41,7 @@ public class GuardaRoupaJoinerSetup : MonoBehaviour
                 if (tbl == "comodos") cAlias = alias;
             }
 
-            // 3) Valida colunas exatas com prefixos corretos  
+            
             var cols = m.Groups["cols"].Value
                         .Split(',').Select(c => c.Trim()).ToList();
             if (cols.Count != RequiredCols.Length)
@@ -69,7 +69,7 @@ public class GuardaRoupaJoinerSetup : MonoBehaviour
                     return DebugFail($"coluna {req} com alias inválido");
             }
 
-            // 4) Garante os dois INNER JOINs contra as outras tabelas  
+            
             foreach (var other in Tables.Except(new[] { fromTbl }))
             {
                 var patJoin = $@"\bINNER\s+JOIN\s+{other}\b";
@@ -77,8 +77,7 @@ public class GuardaRoupaJoinerSetup : MonoBehaviour
                     return DebugFail($"falta INNER JOIN {other}");
             }
 
-            // 5) Exige ON corretos  
-            //  aceita m.IdComodo = c.IdComodo OU c.IdComodo = m.IdComodo
+           
             var patMovCom = $@"\b(?:{Regex.Escape(mAlias)}\.IdComodo\s*=\s*{Regex.Escape(cAlias)}\.IdComodo|" +
                              $@"{Regex.Escape(cAlias)}\.IdComodo\s*=\s*{Regex.Escape(mAlias)}\.IdComodo)\b";
             if (!Regex.IsMatch(norm, patMovCom, RegexOptions.IgnoreCase))
@@ -90,19 +89,18 @@ public class GuardaRoupaJoinerSetup : MonoBehaviour
             if (!Regex.IsMatch(norm, patItemMov, RegexOptions.IgnoreCase))
                 return DebugFail("faltando ON IdMovel entre Itens e Moveis");
 
-            // 6) WHERE prefix.IdMovel = 29  
             var wherePat = $@"\b(?:{Regex.Escape(iAlias)}|{Regex.Escape(mAlias)})\.IdMovel\s*=\s*{ExpectedMovelId}\b";
             if (!Regex.IsMatch(norm, wherePat, RegexOptions.IgnoreCase))
                 return DebugFail("IdMovel deve ser qualificado por Moveis ou Itens");
 
-            // 7) Valida resultado  
+      
             if (!(itemsObj is IEnumerable en))
                 return DebugFail("resultado não é IEnumerable");
             var list = en.Cast<object>().ToList();
             if (list.Count == 0)
                 return DebugFail("nenhum registro retornado");
 
-            // 8) Verifica itens retornados corretos  
+           
             string[] expectedItems = { "ChaveQuarto2Joiner", "SapatoJoiner" };
             var actualItems = list
                 .Select(o => o.GetType().GetProperty("NomeItem")?.GetValue(o)?.ToString())
@@ -112,7 +110,7 @@ public class GuardaRoupaJoinerSetup : MonoBehaviour
             if (!expectedItems.OrderBy(s => s).SequenceEqual(actualItems))
                 return DebugFail("itens retornados não correspondem ao esperado");
 
-            // 9) Verifica propriedades não-nulas, incluindo Dica  
+          
             foreach (var obj in list)
             {
                 var t = obj.GetType();
