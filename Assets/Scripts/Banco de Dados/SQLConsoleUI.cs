@@ -135,11 +135,20 @@ public class SQLConsoleUI : MonoBehaviour
 
         // 3) remove qualifier para detectar o DTO
         var bareCols = selectedColumns
-            .Select(c => {
-                var parts = c.Split('.');
-                return parts[parts.Length - 1];
-            })
-            .ToList();
+    .Select(c => {
+        // primeiro, tenta capturar um "AS <alias>"
+        var m = Regex.Match(c, @"\bAS\s+(\w+)$", RegexOptions.IgnoreCase);
+        if (m.Success)
+            return m.Groups[1].Value;
+
+        // senão, se tiver "tabela.coluna", mantém só "coluna"
+        if (c.Contains("."))
+            return c.Split('.').Last();
+
+        // senão usa tudo
+        return c;
+    })
+    .ToList();
 
         bool isThreeWayJoin =
             bareCols.Contains("NomeItem") &&
@@ -147,10 +156,24 @@ public class SQLConsoleUI : MonoBehaviour
             bareCols.Contains("NomeMovel") &&
             bareCols.Contains("NomeComodo");
 
+        bool isCountChaves = bareCols.Contains("IdMovel")
+                           && bareCols.Contains("QtdItens")
+                           && bareCols.Contains("QtdChaves");
+
         // 4) escolhe o tipo de mapeamento
-        Type resultType = isThreeWayJoin
-            ? typeof(ItemMovelComodoDTO)
-            : MapTableNameToType(tables[0]);
+        Type resultType;
+        if (isThreeWayJoin)
+        {
+            resultType = typeof(ItemMovelComodoDTO);
+        }
+        else if (isCountChaves)
+        {
+            resultType = typeof(ItensCountChavesResult);
+        }
+        else
+        {
+            resultType = MapTableNameToType(ExtractTables(norm)[0]);
+        }
 
         // 5) separa SELECT … e FROM … para reescrever colunas
         var mFrom = Regex.Match(norm, @"\bFROM\b", RegexOptions.IgnoreCase);
@@ -326,6 +349,78 @@ public class SQLConsoleUI : MonoBehaviour
         var enumer = list.GetEnumerator();
         if (!enumer.MoveNext())
         {
+            // --- Sem registros: criar placeholder com rowPrefab ---
+            GameObject placeholder = Instantiate(rowPrefab, content);
+            EnsureCellCount(placeholder.transform, selectedColumns.Count);
+
+            // Preenche a primeira célula com a mensagem
+            var cellText = placeholder.transform.GetChild(0).GetComponent<TMP_Text>();
+            cellText.text = "🔍 Nenhum registro encontrado.";
+            cellText.alignment = TextAlignmentOptions.Center;
+
+            // Oculta as outras células para que só exista um “quadrado”
+            for (int i = 1; i < selectedColumns.Count; i++)
+                placeholder.transform.GetChild(i).gameObject.SetActive(false);
+
+            // Mostra o painel de scroll para que o background apareça
+            scrollRect.gameObject.SetActive(true);
+            return;
+        }
+
+        // cabeçalho só com os nomes "puros" ou alias após AS
+        GameObject head = Instantiate(rowPrefab, content);
+        EnsureCellCount(head.transform, selectedColumns.Count);
+        for (int i = 0; i < selectedColumns.Count; i++)
+        {
+            // pega a definição original e remove ponto-e-vírgula final
+            var raw = selectedColumns[i].Trim().TrimEnd(';');
+
+            string name;
+            // tenta extrair alias após "AS <alias>"
+            var m = Regex.Match(raw, @"\bAS\s+(\w+)$", RegexOptions.IgnoreCase);
+            if (m.Success)
+            {
+                name = m.Groups[1].Value;
+            }
+            else if (raw.Contains("."))
+            {
+                // se não houver alias, mas tiver qualifier, pega só a parte depois do ponto
+                name = raw.Split('.').Last();
+            }
+            else
+            {
+                // senão, usa o texto inteiro (por exemplo COUNT(*) ou SUM(...))
+                name = raw;
+            }
+
+            head.transform.GetChild(i)
+                .GetComponent<TMP_Text>()
+                .text = $"<b>{name}</b>";
+        }
+
+        // primeira linha de dados
+        CreateDynamicRowProp(enumer.Current);
+
+        // demais linhas
+        while (enumer.MoveNext())
+            CreateDynamicRowProp(enumer.Current);
+
+        Canvas.ForceUpdateCanvases();
+        scrollRect.verticalNormalizedPosition = 1;
+        scrollRect.gameObject.SetActive(true);
+    }
+
+
+    /*
+    private void RenderGrid(IEnumerable list)
+    {
+        // limpa linhas antigas
+        foreach (Transform child in content)
+            Destroy(child.gameObject);
+
+        var enumer = list.GetEnumerator();
+        if (!enumer.MoveNext())
+        {
             feedbackText.text += "\nNenhum registro encontrado.";
             return;
         }
@@ -355,7 +450,7 @@ public class SQLConsoleUI : MonoBehaviour
         scrollRect.verticalNormalizedPosition = 1;
         scrollRect.gameObject.SetActive(true);
     }
-
+    */
 
     private void RenderGridWithAllProperties(IEnumerable list)
     {
@@ -409,7 +504,7 @@ public class SQLConsoleUI : MonoBehaviour
                 v != null ? v.ToString() : "null";
         }
     }
-
+    /*
     private void CreateDynamicRowProp(object item)
     {
         GameObject row = Instantiate(rowPrefab, content);
@@ -428,8 +523,42 @@ public class SQLConsoleUI : MonoBehaviour
             row.transform.GetChild(i).GetComponent<TMP_Text>().text =
                 v != null ? v.ToString() : string.Empty;
         }
-    }
+    }*/
+    private void CreateDynamicRowProp(object item)
+    {
+        // instancia a linha
+        GameObject row = Instantiate(rowPrefab, content);
+        EnsureCellCount(row.transform, selectedColumns.Count);
 
+        for (int i = 0; i < selectedColumns.Count; i++)
+        {
+            // pega o raw e retira ponto-e-vírgula se houver
+            var raw = selectedColumns[i].Trim().TrimEnd(';');
+
+            // tenta capturar um alias após "AS <alias>"
+            var m = Regex.Match(raw, @"\bAS\s+(\w+)$", RegexOptions.IgnoreCase);
+            string propName;
+            if (m.Success)
+            {
+                propName = m.Groups[1].Value;            // ex: "QtdChaves"
+            }
+            else if (raw.Contains("."))
+            {
+                propName = raw.Split('.').Last();        // ex: "IdMovel" ou "COUNT(*)"
+            }
+            else
+            {
+                propName = raw;                          // fallback, mas no seu caso o validator força AS
+            }
+
+            // finalmente pega o valor da propriedade
+            var prop = item.GetType().GetProperty(propName);
+            var v = prop != null ? prop.GetValue(item, null) : null;
+            row.transform.GetChild(i)
+               .GetComponent<TMP_Text>()
+               .text = v != null ? v.ToString() : string.Empty;
+        }
+    }
 
 
 

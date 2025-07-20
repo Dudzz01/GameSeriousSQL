@@ -55,7 +55,24 @@ public class GameController : MonoBehaviour
             case 17:
                 if (s.arrayFasesDesbloqueadas[4] == false)
                 {
-                    s.arrayFasesDesbloqueadas[4] = true; // fase final
+                    s.arrayFasesDesbloqueadas[4] = true; // fase 5
+                    GetComponent<SaveGame>().SaveGameOfScene(s);
+                }
+
+                break;
+
+            case 20:
+                if (s.arrayFasesDesbloqueadas[5] == false)
+                {
+                    s.arrayFasesDesbloqueadas[5] = true; // fase final
+                    GetComponent<SaveGame>().SaveGameOfScene(s);
+                }
+
+                break;
+            case 23:
+                if (s.arrayFasesDesbloqueadas[6] == false)
+                {
+                    s.arrayFasesDesbloqueadas[6] = true; // fase final
                     GetComponent<SaveGame>().SaveGameOfScene(s);
                 }
 
