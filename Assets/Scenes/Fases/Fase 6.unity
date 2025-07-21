@@ -443,7 +443,7 @@ PrefabInstance:
         some quantas s\xE3o chaves (SUM(NomeItem LIKE 'Chave%')), agrupe por IdMovel,
         mostre o resultado apenas se houver pelo menos uma chave (HAVING), e limite
         a sa\xEDda a uma linha (LIMIT 1). Obrigat\xF3rio uso de alias nas fun\xE7\xF5es
-        de agregamento."
+        de agregamento.  Exiba tamb\xE9m o IdMovel"
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.size
@@ -643,7 +643,7 @@ PrefabInstance:
         some quantas s\xE3o chaves (SUM(NomeItem LIKE 'Chave%')), agrupe por IdMovel,
         mostre o resultado apenas se houver pelo menos uma chave (HAVING), e limite
         a sa\xEDda a uma linha (LIMIT 1). Obrigat\xF3rio uso de alias nas fun\xE7\xF5es
-        de agregamento."
+        de agregamento.  Exiba tamb\xE9m o IdMovel"
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.size
@@ -3906,7 +3906,7 @@ PrefabInstance:
         some quantas s\xE3o chaves (SUM(NomeItem LIKE 'Chave%')), agrupe por IdMovel,
         mostre o resultado apenas se houver pelo menos uma chave (HAVING), e limite
         a sa\xEDda a uma linha (LIMIT 1). Obrigat\xF3rio uso de alias nas fun\xE7\xF5es
-        de agregamento."
+        de agregamento.  Exiba tamb\xE9m o IdMovel"
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.size
@@ -4230,7 +4230,7 @@ PrefabInstance:
         some quantas s\xE3o chaves (SUM(NomeItem LIKE 'Chave%')), agrupe por IdMovel,
         mostre o resultado apenas se houver pelo menos uma chave (HAVING), e limite
         a sa\xEDda a uma linha (LIMIT 1). Obrigat\xF3rio uso de alias nas fun\xE7\xF5es
-        de agregamento."
+        de agregamento.  Exiba tamb\xE9m o IdMovel"
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.size
@@ -5899,7 +5899,7 @@ PrefabInstance:
         some quantas s\xE3o chaves (SUM(NomeItem LIKE 'Chave%')), agrupe por IdMovel,
         mostre o resultado apenas se houver pelo menos uma chave (HAVING), e limite
         a sa\xEDda a uma linha (LIMIT 1). Obrigat\xF3rio uso de alias nas fun\xE7\xF5es
-        de agregamento."
+        de agregamento.  Exiba tamb\xE9m o IdMovel"
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.size
@@ -8229,7 +8229,7 @@ PrefabInstance:
         some quantas s\xE3o chaves (SUM(NomeItem LIKE 'Chave%')), agrupe por IdMovel,
         mostre o resultado apenas se houver pelo menos uma chave (HAVING), e limite
         a sa\xEDda a uma linha (LIMIT 1). Obrigat\xF3rio uso de alias nas fun\xE7\xF5es
-        de agregamento."
+        de agregamento.  Exiba tamb\xE9m o IdMovel"
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.size
@@ -8429,7 +8429,7 @@ PrefabInstance:
         some quantas s\xE3o chaves (SUM(NomeItem LIKE 'Chave%')), agrupe por IdMovel,
         mostre o resultado apenas se houver pelo menos uma chave (HAVING), e limite
         a sa\xEDda a uma linha (LIMIT 1). Obrigat\xF3rio uso de alias nas fun\xE7\xF5es
-        de agregamento."
+        de agregamento.  Exiba tamb\xE9m o IdMovel"
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.size
@@ -8728,7 +8728,7 @@ PrefabInstance:
         some quantas s\xE3o chaves (SUM(NomeItem LIKE 'Chave%')), agrupe por IdMovel,
         mostre o resultado apenas se houver pelo menos uma chave (HAVING), e limite
         a sa\xEDda a uma linha (LIMIT 1). Obrigat\xF3rio uso de alias nas fun\xE7\xF5es
-        de agregamento."
+        de agregamento.  Exiba tamb\xE9m o IdMovel"
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.size
@@ -12997,7 +12997,7 @@ PrefabInstance:
         some quantas s\xE3o chaves (SUM(NomeItem LIKE 'Chave%')), agrupe por IdMovel,
         mostre o resultado apenas se houver pelo menos uma chave (HAVING), e limite
         a sa\xEDda a uma linha (LIMIT 1). Obrigat\xF3rio uso de alias nas fun\xE7\xF5es
-        de agregamento."
+        de agregamento.  Exiba tamb\xE9m o IdMovel"
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.size
@@ -13197,7 +13197,7 @@ PrefabInstance:
         some quantas s\xE3o chaves (SUM(NomeItem LIKE 'Chave%')), agrupe por IdMovel,
         mostre o resultado apenas se houver pelo menos uma chave (HAVING), e limite
         a sa\xEDda a uma linha (LIMIT 1). Obrigat\xF3rio uso de alias nas fun\xE7\xF5es
-        de agregamento."
+        de agregamento. Exiba tamb\xE9m o IdMovel"
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.size
@@ -13844,7 +13844,7 @@ PrefabInstance:
         some quantas s\xE3o chaves (SUM(NomeItem LIKE 'Chave%')), agrupe por IdMovel,
         mostre o resultado apenas se houver pelo menos uma chave (HAVING), e limite
         a sa\xEDda a uma linha (LIMIT 1). Obrigat\xF3rio uso de alias nas fun\xE7\xF5es
-        de agregamento."
+        de agregamento. Exiba tamb\xE9m o IdMovel"
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.size
@@ -27819,7 +27819,7 @@ PrefabInstance:
         some quantas s\xE3o chaves (SUM(NomeItem LIKE 'Chave%')), agrupe por IdMovel,
         mostre o resultado apenas se houver pelo menos uma chave (HAVING), e limite
         a sa\xEDda a uma linha (LIMIT 1). Obrigat\xF3rio uso de alias nas fun\xE7\xF5es
-        de agregamento."
+        de agregamento.  Exiba tamb\xE9m o IdMovel"
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.size
