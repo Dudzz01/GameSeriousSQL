@@ -4207,7 +4207,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[6]
-      value: RIGHT
+      value: LEFT
       objectReference: {fileID: 0}
     - target: {fileID: 3092442423893661753, guid: cb73f189b2cba684aaec17d12a57cf8e, type: 3}
       propertyPath: tokens.Array.data[7]
