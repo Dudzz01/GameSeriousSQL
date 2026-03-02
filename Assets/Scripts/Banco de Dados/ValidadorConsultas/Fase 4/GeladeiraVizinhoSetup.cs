@@ -67,6 +67,9 @@ public class GeladeiraVizinhoSetup : MonoBehaviour
             var whereMatch = Regex.Match(norm, @"\bWHERE\b\s+(?<where>.*)$",
     RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
+            if (!whereMatch.Success)
+                return DebugFail("falta WHERE");
+
             if (whereMatch.Success)
             {
                 var whereTxt = whereMatch.Groups["where"].Value;
@@ -79,6 +82,14 @@ public class GeladeiraVizinhoSetup : MonoBehaviour
                  .Select(s => Regex.Replace(s, @"\s+", " ").Trim())
                  .Where(s => s.Length > 0)
                  .ToList();
+
+                var whereCom = $@"\b{Regex.Escape(mAlias)}\.IdComodo\s*=\s*{ExpectedComodoId}\b";
+                var whereMov = $@"\b{Regex.Escape(mAlias)}\.IdMovel\s*=\s*{ExpectedMovelId}\b";
+
+                if (!Regex.IsMatch(whereTxt, whereCom, RegexOptions.IgnoreCase))
+                    return DebugFail($"falta WHERE IdComodo = {ExpectedComodoId}");
+                if (!Regex.IsMatch(whereTxt, whereMov, RegexOptions.IgnoreCase))
+                    return DebugFail($"falta WHERE IdMovel = {ExpectedMovelId}");
 
                 if (parts.Count != 2)
                     return DebugFail("WHERE deve ter exatamente 2 condições (IdComodo e IdMovel)");
@@ -129,12 +140,7 @@ public class GeladeiraVizinhoSetup : MonoBehaviour
                 return DebugFail("faltando ON entre Moveis e Comodos");
 
       
-            var whereCom = $@"\b{Regex.Escape(mAlias)}\.IdComodo\s*=\s*{ExpectedComodoId}\b";
-            if (!Regex.IsMatch(norm, whereCom, RegexOptions.IgnoreCase))
-                return DebugFail("falta WHERE IdComodo = 11");
-            var whereMov = $@"\b{Regex.Escape(mAlias)}\.IdMovel\s*=\s*{ExpectedMovelId}\b";
-            if (!Regex.IsMatch(norm, whereMov, RegexOptions.IgnoreCase))
-                return DebugFail("falta WHERE IdMovel = 41");
+            
 
        
             if (!(itemsObj is IEnumerable en))
