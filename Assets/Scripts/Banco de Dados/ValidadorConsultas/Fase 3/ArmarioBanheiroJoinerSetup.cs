@@ -78,6 +78,10 @@ public class ArmarioBanheiroJoinerSetup : MonoBehaviour
             }
 
             
+            int joinCount = Regex.Matches(norm, @"\bINNER\s+JOIN\b", RegexOptions.IgnoreCase).Count;
+            if (joinCount != 2)
+                return DebugFail("deve haver exatamente 2 INNER JOINs");
+
             var patMovCom = $@"\b(?:{Regex.Escape(mAlias)}\.IdComodo\s*=\s*{Regex.Escape(cAlias)}\.IdComodo|" +
                              $@"{Regex.Escape(cAlias)}\.IdComodo\s*=\s*{Regex.Escape(mAlias)}\.IdComodo)\b";
             if (!Regex.IsMatch(norm, patMovCom, RegexOptions.IgnoreCase))
