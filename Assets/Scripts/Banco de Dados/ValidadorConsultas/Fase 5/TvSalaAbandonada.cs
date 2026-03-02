@@ -70,10 +70,11 @@ public class TvSalaAbandonada : MonoBehaviour
             if (groupByMatches.Count != 1)
                 return DebugFail("deve haver exatamente um GROUP BY");
             var groupByPat = new Regex(
-                @"\bGROUP\s+BY\s+(?:\w+\.)?IdMovel\b",
-                RegexOptions.IgnoreCase);
+            @"\bGROUP\s+BY\s+(?:\w+\.)?IdMovel\s*(?:$|;)",
+            RegexOptions.IgnoreCase);
+
             if (!groupByPat.IsMatch(norm))
-                return DebugFail("falta GROUP BY IdMovel");
+                return DebugFail("GROUP BY deve ser somente IdMovel");
 
 
             if (!(itemsObj is IEnumerable en))
