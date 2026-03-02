@@ -68,11 +68,14 @@ public class VasoSanitarioAvo : MonoBehaviour
             var gbMatches = Regex.Matches(norm, @"\bGROUP\s+BY\b", RegexOptions.IgnoreCase);
             if (gbMatches.Count != 1)
                 return DebugFail("deve haver exatamente um GROUP BY");
-            var gbPat = new Regex(@"\bGROUP\s+BY\s+(?:\w+\.)?IdMovel\b", RegexOptions.IgnoreCase);
+            var gbPat = new Regex(
+                @"\bGROUP\s+BY\s+(?:\w+\.)?IdMovel\s*(?=\bHAVING\b|\bLIMIT\b|$)",
+                RegexOptions.IgnoreCase
+            );
             if (!gbPat.IsMatch(norm))
-                return DebugFail("falta GROUP BY IdMovel");
+                return DebugFail("GROUP BY deve ser somente IdMovel");
 
-           
+
             var hMatches = Regex.Matches(norm, @"\bHAVING\b", RegexOptions.IgnoreCase);
             if (hMatches.Count != 1)
                 return DebugFail("deve haver exatamente uma cláusula HAVING");
