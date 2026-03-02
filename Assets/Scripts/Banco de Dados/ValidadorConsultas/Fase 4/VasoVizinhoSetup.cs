@@ -65,7 +65,47 @@ public class VasoVizinhoSetup : MonoBehaviour
             if (!Regex.IsMatch(norm, @"\bINNER\s+JOIN\s+Comodos\b", RegexOptions.IgnoreCase))
                 return DebugFail("falta INNER JOIN Comodos");
 
-  
+            var whereMatch = Regex.Match(norm, @"\bWHERE\b\s+(?<where>.*)$",
+    RegexOptions.IgnoreCase | RegexOptions.Singleline);
+
+            if (whereMatch.Success)
+            {
+                var whereTxt = whereMatch.Groups["where"].Value;
+                if (Regex.IsMatch(whereTxt, $@"\b{Regex.Escape(iAlias)}\.", RegexOptions.IgnoreCase) ||
+                    Regex.IsMatch(whereTxt, @"\bItens\.", RegexOptions.IgnoreCase))
+                    return DebugFail("WHERE não pode referenciar Itens; a ligação deve ficar no ON do LEFT JOIN.");
+
+
+                var parts = Regex.Split(whereTxt, @"\s+AND\s+", RegexOptions.IgnoreCase)
+                 .Select(s => Regex.Replace(s, @"\s+", " ").Trim())
+                 .Where(s => s.Length > 0)
+                 .ToList();
+
+                if (parts.Count != 2)
+                    return DebugFail("WHERE deve ter exatamente 2 condições (IdComodo e IdMovel)");
+
+            }
+
+            
+
+            var joinsItens = Regex.Matches(
+                norm,
+                @"\b(?:LEFT\s+JOIN|INNER\s+JOIN|JOIN)\s+Itens\b",
+                RegexOptions.IgnoreCase
+            );
+            if (joinsItens.Count != 1)
+                return DebugFail("Itens deve aparecer em exatamente 1 JOIN (apenas LEFT JOIN Itens)");
+
+            
+            var joinsComodos = Regex.Matches(
+                norm,
+                @"\b(?:LEFT\s+JOIN|INNER\s+JOIN|JOIN)\s+Comodos\b",
+                RegexOptions.IgnoreCase
+            );
+            if (joinsComodos.Count != 1)
+                return DebugFail("Comodos deve aparecer em exatamente 1 JOIN (apenas INNER JOIN Comodos)");
+
+
             if (Regex.IsMatch(norm, @"\bINNER\s+JOIN\s+Itens\b", RegexOptions.IgnoreCase))
                 return DebugFail("INNER JOIN Itens não permitido — use apenas LEFT JOIN Itens");
 
@@ -99,6 +139,8 @@ public class VasoVizinhoSetup : MonoBehaviour
             var whereMov = $@"\b{Regex.Escape(mAlias)}\.IdMovel\s*=\s*{ExpectedMovelId}\b";
             if (!Regex.IsMatch(norm, whereMov, RegexOptions.IgnoreCase))
                 return DebugFail("falta WHERE IdMovel = 41");
+
+
 
    
             if (!(itemsObj is IEnumerable en))
