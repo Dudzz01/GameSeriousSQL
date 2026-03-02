@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 [RequireComponent(typeof(FurnitureInteractable))]
@@ -15,7 +16,7 @@ public class ComputadorCasaNamoradaSetup : MonoBehaviour
     void Awake()
     {
         var fi = GetComponent<FurnitureInteractable>();
-        fi.validator = new Func<object, bool>(itemsObj =>
+        fi.validator = new Func<string, object, bool>((sql, itemsObj) =>
         {
            
             if (!(itemsObj is IEnumerable enumerable))
@@ -24,7 +25,16 @@ public class ComputadorCasaNamoradaSetup : MonoBehaviour
                 return false;
             }
 
-         
+            var norm = Regex.Replace(sql, @"\s+", " ").Trim();
+            norm = Regex.Replace(norm, @"\s*\.\s*", ".");
+
+            var wherePat = $@"\bWHERE\b.*?\b(?:\w+\.)?IdMovel\s*=\s*{ExpectedMovelId}\b";
+            if (!Regex.IsMatch(norm, wherePat, RegexOptions.IgnoreCase))
+            {
+                Debug.Log($"Validator: falta WHERE IdMovel = {ExpectedMovelId} → invalid");
+                return false;
+            }
+
             var lista = enumerable.Cast<object>().ToList();
 
             
